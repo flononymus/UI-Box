@@ -1,0 +1,19 @@
+{
+  "name": "ui-box",
+  "version": "1.0.0",
+  "description": "UI-Box",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flokleiser/UI-Box.git"
+  },
+  "author": "Flo Kleiser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flokleiser/UI-Box/issues"
+  },
+  "homepage": "https://github.com/flokleiser/UI-Box#readme"
+}
