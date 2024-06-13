@@ -1,6 +1,9 @@
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('node:path')
 
+// let htmlSource = 'src/app/home.html'
+let htmlSource = 'src/app/settings.html'
+
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
@@ -10,9 +13,10 @@ const createWindow = () => {
     }
   })
 
-  mainWindow.loadFile('src/index.html')
+  // mainWindow.loadFile('src/app/home.html')
+  mainWindow.loadFile(htmlSource)
 
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   ipcMain.handle('dark-mode:toggle', () => {
     if (nativeTheme.shouldUseDarkColors) {
@@ -25,6 +29,16 @@ const createWindow = () => {
   
   ipcMain.handle('dark-mode:system', () => {
     nativeTheme.themeSource = 'system'
+  })
+
+  ipcMain.handle('htmlSource:home', () => {
+    htmlSource = 'src/app/home.html'
+    mainWindow.loadFile(htmlSource)
+  })
+
+  ipcMain.handle('htmlSource:settings', () => {
+    htmlSource = 'src/app/settings.html'
+    mainWindow.loadFile(htmlSource)
   })
 }
 
