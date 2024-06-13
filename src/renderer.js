@@ -5,21 +5,23 @@ function attachEventListeners() {
   const toggleDarkMode = document.getElementById('toggle-dark-mode');
   const toggleSystemMode= document.getElementById('reset-to-system');
 
+  // const clickType = "click";
+  const clickType = "mousedown";
+
   if (settingsLink) {
-    settingsLink.addEventListener('click', async () => {
+    settingsLink.addEventListener(clickType, async () => {
       console.log('should go to settings');
       await window.htmlSource.settings();
     });
   }
 
   if (themeSource) {
-    console.log('themeSource should be available')
-    toggleDarkMode.addEventListener('click', async () => {
+    toggleDarkMode.addEventListener(clickType, async () => {
       const isDarkMode = await window.darkMode.toggle()
       themeSource.innerHTML = isDarkMode ? 'Dark' : 'Light'
     })
     
-    toggleSystemMode.addEventListener('click', async () => {
+    toggleSystemMode.addEventListener(clickType, async () => {
       await window.darkMode.system()
       themeSource.innerHTML = 'System'
     })
@@ -27,7 +29,7 @@ function attachEventListeners() {
   }
 
   if (homeLink) {
-    homeLink.addEventListener('click', async () => {
+    homeLink.addEventListener(clickType, async () => {
       console.log('should go to home');
       await window.htmlSource.home();
     });

@@ -1,7 +1,7 @@
 # UI-Box
 ___
 
-A simple UI-sandbox/playground thingy
+A simple UI-sandbox/playground thingy (virtual fidget spinner)
 
 
 ___
