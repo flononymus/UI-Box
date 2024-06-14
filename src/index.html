@@ -8,22 +8,22 @@
   </head>
   <body>
 
-    <nav class="navbar"> 
+    <!-- <nav class="navbar"> 
       <button id="home-link">Home</button>   
       <button id="settings-link">Settings</button>   
       <button id="test-link">Test</button>   
-    </nav>
+    </nav> -->
 
-    <!-- <div id="navbar"> </div> -->
+    <nav>
+      <button onclick="loadPage('Home')">Page 1</button>
+      <button onclick="loadPage('Settings')">Page 2</button>
+      <button onclick="loadPage('Testpage')">Page 3</button>
+  </nav>
 
-    <h1>UI-Box</h1>
+  <div id="root"> </div>
+  <script src="bundle.js"> </script>
 
-    <p> Welcome to the <strong>UI-Box</strong></p>
-    <navbar>
 
-    <script src="../renderer.js"></script>
-        <script>
-            requires('./components/navbar.is')
-        </script>
+    <!-- <script src="../renderer.js"></script> -->
   </body>
 </html>

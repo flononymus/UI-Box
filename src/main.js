@@ -1,12 +1,11 @@
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('node:path')
 
-// let htmlSource = 'src/app/home.html'
-let htmlSource = 'src/index.html'
-// let htmlSource = 'src/app/settings.html'
+// let htmlSource = 'src/index.html'
+let mainWindow
 
 const createWindow = () => {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -15,8 +14,9 @@ const createWindow = () => {
     }
   })
 
-  // mainWindow.loadFile('src/app/home.html')
-  mainWindow.loadFile(htmlSource)
+  // mainWindow.loadFile(htmlSource)
+  // mainWindow.loadFile('src/index.html')
+  mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
   mainWindow.webContents.openDevTools()
 
