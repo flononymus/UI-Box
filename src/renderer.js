@@ -5,7 +5,6 @@ import Settings from './pages/Settings';
 import Testpage from './pages/Testpage';
 
 
-
 const App = () => {
 
     const [page, setPage] = useState('Home');
@@ -40,10 +39,6 @@ function attachEventListeners() {
   const settingsButton= document.getElementById('settingsButton');
   const testPageButton= document.getElementById('testpageButton');
 
-  // const themeSource = document.getElementById('theme-source')
-  // const darkModeToggle = document.getElementById('toggle-dark-mode');
-  // const systemModeToggle = document.getElementById('reset-to-system');
-
   const testButton = document.getElementById('buttonTest');
 
     if (homeButton) {
@@ -57,40 +52,6 @@ function attachEventListeners() {
   if (testPageButton) {
     testPageButton.addEventListener(clickType, () =>  window.loadPage('Testpage'));
   }
-
-  // if (testButton) {
-  //   testButton.addEventListener(clickType, () => console.log('button clicked'))
-  // }
-
-  // if (darkModeToggle) {
-  //   darkModeToggle.addEventListener(clickType, () => )
-  // }
-
-  // if (systemModeToggle) {
-  //   systemModeToggle.addEventListener
-  // }
-
-  // if (darkModeToggle) {
-    // console.log('dark mode available')
-    // darkModeToggle.addEventListener('click', async () => {
-    //   const isDarkMode = await window.darkMode.toggle()
-    //   themeSource.innerHTML = isDarkMode ? 'Dark' : 'Light'
-    //   console.log('dark mode toggle')
-    // })
-
-    // systemModeToggle.addEventListener('click', async () => {
-    //   await window.darkMode.system()
-    //   themeSource.innerHTML = 'System'
-    //   console.log('system mode toggle')
-    // })
-
-    // systemModeToggle.addEventListener('click',() => {
-    //   window.darkMode.system()
-    //   themeSource.innerHTML = 'System'
-    //   window.loadPage('Settings')
-    //   console.log('system mode toggle')
-    // })
-  // }
 
 }
 document.addEventListener('DOMContentLoaded', attachEventListeners)
