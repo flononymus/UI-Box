@@ -12,6 +12,10 @@ body {
     /* color:white; */
 }
 
+#navMenu {
+  color:#555 
+}
+
   
   @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }
