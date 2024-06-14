@@ -16,7 +16,7 @@ const createWindow = () => {
   // mainWindow.loadFile('src/app/home.html')
   mainWindow.loadFile(htmlSource)
 
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   ipcMain.handle('dark-mode:toggle', () => {
     if (nativeTheme.shouldUseDarkColors) {
@@ -40,6 +40,12 @@ const createWindow = () => {
     htmlSource = 'src/app/settings.html'
     mainWindow.loadFile(htmlSource)
   })
+
+  ipcMain.handle('htmlSource:test', () => {
+    htmlSource = 'src/app/test.html'
+    mainWindow.loadFile(htmlSource)
+  })
+
 }
 
 app.whenReady().then(() => {

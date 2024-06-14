@@ -16,5 +16,6 @@ contextBridge.exposeInMainWorld('darkMode', {
 
 contextBridge.exposeInMainWorld('htmlSource', {
   home: () => ipcRenderer.invoke('htmlSource:home'),
-  settings: () => ipcRenderer.invoke('htmlSource:settings')
+  settings: () => ipcRenderer.invoke('htmlSource:settings'),
+  test: () => ipcRenderer.invoke('htmlSource:test')
 })
