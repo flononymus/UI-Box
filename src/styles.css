@@ -26,6 +26,12 @@ body {
   margin-bottom:0.25rem; */
   margin-right:0.25rem;
 }
+
+
+.button1 {
+  width: 150px;
+  border-radius: 25px;
+}
   
   @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }
