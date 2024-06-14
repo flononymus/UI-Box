@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <title>UI-Box</title>
   </head>
@@ -15,13 +16,16 @@
     </nav> -->
 
     <nav>
-      <button onclick="loadPage('Home')">Page 1</button>
+      <!-- <button onclick="loadPage('Home')">Page 1</button>
       <button onclick="loadPage('Settings')">Page 2</button>
-      <button onclick="loadPage('Testpage')">Page 3</button>
+      <button onclick="loadPage('Testpage')">Page 3</button> -->
+      <button id="homeButton">Page 1</button>
+      <button id="settingButton">Page 2</button>
+      <button id="testpageButton">Page 3</button>
   </nav>
 
   <div id="root"> </div>
-  <script src="bundle.js"> </script>
+  <script src="../dist/bundle.js"> </script>
 
 
     <!-- <script src="../renderer.js"></script> -->

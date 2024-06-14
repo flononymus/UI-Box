@@ -46,27 +46,32 @@
 
 
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import Page1 from './pages/Page1';
-import Page2 from './pages/Page2';
-import Page3 from './pages/Page3';
+import {createRoot} from 'react-dom/client'
+// import ReactDOM from 'react-dom';
+
+import Home from './pages/Home';
+import Settings from './pages/Settings';
+import Testpage from './pages/Testpage';
+
+
 
 const App = () => {
-    const [page, setPage] = useState('Page1');
+
+    const [page, setPage] = useState('Home');
 
     let CurrentPage;
     switch (page) {
-        case 'Page1':
-            CurrentPage = Page1;
+        case 'Home':
+            CurrentPage = Home;
             break;
-        case 'Page2':
-            CurrentPage = Page2;
+        case 'Settings':
+            CurrentPage = Settings;
             break;
-        case 'Page3':
-            CurrentPage = Page3;
+        case 'Testpage':
+            CurrentPage = Testpage;
             break;
         default:
-            CurrentPage = Page1;
+            CurrentPage = Home;
     }
 
     window.loadPage = (page) => {
@@ -76,4 +81,40 @@ const App = () => {
     return <CurrentPage />;
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+function attachEventListeners() {
+
+  // const clickType = "mousedown";
+
+
+  const homeButton= document.getElementById('homeButton');
+  const settingsButton= document.getElementById('settingsButton');
+  const testButton= document.getElementById('testpageButton');
+
+    if (homeButton) {
+    // homeButton.addEventListener(clickType, () => window.loadPage('Home'));
+    homeButton.addEventListener('mousedown', () => window.loadPage('Home'));
+  }
+
+  if (settingsButton) {
+    // settingsButton.addEventListener(clickType,() => window.loadPage('Settings'));
+    settingsButton.addEventListener('mousedown',() => window.loadPage('Settings'));
+  }
+
+  if (testButton) {
+    // testButton.addEventListener(clickType, () =>  window.loadPage('Testpage'));
+    testButton.addEventListener('mousedown', () =>  window.loadPage('Testpage'));
+  }
+
+}
+document.addEventListener('DOMContentLoaded', attachEventListeners)
+
+// document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('root')
+  const root = createRoot(container);
+  root.render(<App/>)
+
+  // document.getElementById('Home').addEventListener('click', () => window.loadPage('Home'));
+  // document.getElementById('Settings').addEventListener('click', () => window.loadPage('Settings'));
+  // document.getElementById('Testpage').addEventListener('click', () => window.loadPage('Testpage'));
+// });

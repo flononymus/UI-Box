@@ -2,15 +2,17 @@ const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('node:path')
 
 // let htmlSource = 'src/index.html'
-let mainWindow
+// let mainWindow
 
-const createWindow = () => {
-  mainWindow = new BrowserWindow({
+function createWindow() {
+  const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true 
+      nodeIntegration: true, 
+      contextIsolation: true,
+      enableRemoteModule:false,
     }
   })
 
@@ -33,20 +35,20 @@ const createWindow = () => {
     nativeTheme.themeSource = 'system'
   })
 
-  ipcMain.handle('htmlSource:home', () => {
-    htmlSource = 'src/app/home.html'
-    mainWindow.loadFile(htmlSource)
-  })
+  // ipcMain.handle('htmlSource:home', () => {
+  //   htmlSource = 'src/app/home.html'
+  //   mainWindow.loadFile(htmlSource)
+  // })
 
-  ipcMain.handle('htmlSource:settings', () => {
-    htmlSource = 'src/app/settings.html'
-    mainWindow.loadFile(htmlSource)
-  })
+  // ipcMain.handle('htmlSource:settings', () => {
+  //   htmlSource = 'src/app/settings.html'
+  //   mainWindow.loadFile(htmlSource)
+  // })
 
-  ipcMain.handle('htmlSource:test', () => {
-    htmlSource = 'src/app/test.html'
-    mainWindow.loadFile(htmlSource)
-  })
+  // ipcMain.handle('htmlSource:test', () => {
+  //   htmlSource = 'src/app/test.html'
+  //   mainWindow.loadFile(htmlSource)
+  // })
 }
 
 app.whenReady().then(() => {
