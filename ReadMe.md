@@ -4,8 +4,16 @@ ___
 A simple UI-sandbox/playground thingy (virtual fidget spinner)
 
 
+### Todo:
+- [ ] Look into electron + webpack
+- [ ] Maybe electron + react
+
 ___
 ### Refs
+
+#### Youtube Tutorial:
+https://www.youtube.com/watch?v=kN1Czs0m1SU
+
 #### Multipage example maybe:
 https://github.com/nklayman/electron-multipage-example
 

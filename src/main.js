@@ -9,7 +9,8 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true 
     }
   })
 
@@ -38,6 +39,11 @@ const createWindow = () => {
 
   ipcMain.handle('htmlSource:settings', () => {
     htmlSource = 'src/app/settings.html'
+    mainWindow.loadFile(htmlSource)
+  })
+
+  ipcMain.handle('htmlSource:test', () => {
+    htmlSource = 'src/app/test.html'
     mainWindow.loadFile(htmlSource)
   })
 }
