@@ -9,6 +9,11 @@ const { contextBridge, ipcRenderer } = require('electron/renderer')
 //   getNavbar: navbar
 // });
 
+
+contextBridge.exposeInMainWorld('electron', {
+    ipcRenderer: ipcRenderer,
+});
+
 contextBridge.exposeInMainWorld('darkMode', {
   toggle: () => ipcRenderer.invoke('dark-mode:toggle'),
   system: () => ipcRenderer.invoke('dark-mode:system')
