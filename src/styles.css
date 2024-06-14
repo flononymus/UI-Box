@@ -12,8 +12,15 @@ body {
     /* color:white; */
 }
 
-#navMenu {
-  color:#555 
+.navMenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.navMenu button{
+  width: 100px;
+  margin-top:0.25rem;
+  margin-bottom:0.25rem;
 }
 
   

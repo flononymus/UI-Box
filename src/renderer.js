@@ -33,5 +33,4 @@ function attachEventListeners() {
     });
   }
 }
-
 document.addEventListener('DOMContentLoaded', attachEventListeners);
