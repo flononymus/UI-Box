@@ -10,7 +10,6 @@ function attachEventListeners() {
 
   if (settingsLink) {
     settingsLink.addEventListener(clickType, async () => {
-      console.log('should go to settings');
       await window.htmlSource.settings();
     });
   }
@@ -30,7 +29,6 @@ function attachEventListeners() {
 
   if (homeLink) {
     homeLink.addEventListener(clickType, async () => {
-      console.log('should go to home');
       await window.htmlSource.home();
     });
   }
