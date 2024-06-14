@@ -14,15 +14,18 @@ body {
 
 .navbar{
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  width: 100px;
+  bottom:2rem;
+  /* height: 80vh; */
 }
 
 .navbar button{
   width: 100px;
-  margin-top:0.25rem;
-  margin-bottom:0.25rem;
+  /* margin-top:0.25rem;
+  margin-bottom:0.25rem; */
+  margin-right:0.25rem;
 }
-
   
   @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }
