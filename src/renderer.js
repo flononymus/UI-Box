@@ -5,8 +5,15 @@ function attachEventListeners() {
   const toggleDarkMode = document.getElementById('toggle-dark-mode');
   const toggleSystemMode= document.getElementById('reset-to-system');
 
+  const navbarContainer= document.getElementById('navBar-Menu');
+
   // const clickType = "click";
   const clickType = "mousedown";
+
+
+  // if (navbarContainer) {
+  //   navbarContainer.innerHTML = 
+  // }
 
   if (settingsLink) {
     settingsLink.addEventListener(clickType, async () => {
