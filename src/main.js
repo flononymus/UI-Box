@@ -1,7 +1,8 @@
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
 const path = require('node:path')
 
-let htmlSource = 'src/app/home.html'
+// let htmlSource = 'src/app/home.html'
+let htmlSource = 'src/index.html'
 // let htmlSource = 'src/app/settings.html'
 
 const createWindow = () => {

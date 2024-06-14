@@ -8,6 +8,41 @@ A simple UI-sandbox/playground thingy (virtual fidget spinner)
 - [ ] Look into electron + webpack
 - [ ] Maybe electron + react
 
+
+### Maybe structure?:
+app/
+    electron/
+        main.js    <-- BrowserWindow gets created here, event handlers, etc.
+        menu.js    <-- Custom menu is defined here
+        preload.js    <-- Preload code is here
+    src/
+        components/    <-- Reusable .jsx components
+        core/    <-- The root wrapper element of the app (contains a store, page router)
+        pages/    <-- Each page of the app (.jsx and .css).
+            home/
+                home.jsx
+                home.css
+            about/
+                about.jsx
+                about.css
+        redux/    <-- Page routing code, may not be specific to you
+        index.html    <-- Root html page
+        index.jsx    <-- Root element that renders the root wrapper element
+dist/    <-- Gets auto-created
+node_modules/
+resources/
+    icon.icns
+    icon.ico
+    icon.png
+    etc...
+test/    <-- Contains test scripts
+.gitignore
+.babelrc
+package.json
+README.md
+webpack.config.js
+
+
 ___
 ### Refs
 

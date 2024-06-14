@@ -1,7 +1,7 @@
 // module.exports = function () {
 
 
-function navbar() {
+export default function navbar() {
 
     // document.getElementById("navbar");
 
@@ -20,7 +20,7 @@ function navbar() {
     nav.appendChild(settingsButton);
     nav.appendChild(homeButton);
 
-    return nav;
+return nav;
 
     
     

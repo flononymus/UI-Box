@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <title>UI-Box</title>
+  </head>
+  <body>
+
+    <nav class="navbar"> 
+      <button id="home-link">Home</button>   
+      <button id="settings-link">Settings</button>   
+      <button id="test-link">Test</button>   
+    </nav>
+
+    <!-- <div id="navbar"> </div> -->
+
+    <h1>UI-Box</h1>
+
+    <p> Welcome to the <strong>UI-Box</strong></p>
+    <navbar>
+
+    <script src="../renderer.js"></script>
+        <script>
+            requires('./components/navbar.is')
+        </script>
+  </body>
+</html>
