@@ -8,6 +8,10 @@ A simple UI-sandbox/playground thingy (virtual fidget spinner)
 - [ ] Look into electron + webpack
 - [ ] Maybe electron + react
 
+- [ ] Look into Tauri + Rust
+
+### another maybe:
+https://github.com/daltonmenezes/electron-app
 
 ### Maybe structure?:
 https://github.com/reZach/secure-electron-template
