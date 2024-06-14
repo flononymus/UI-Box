@@ -72,6 +72,7 @@ const App = () => {
             break;
         default:
             CurrentPage = Home;
+            // CurrentPage = Settings;
     }
 
     window.loadPage = (page) => {
@@ -93,17 +94,17 @@ function attachEventListeners() {
 
     if (homeButton) {
     // homeButton.addEventListener(clickType, () => window.loadPage('Home'));
-    homeButton.addEventListener('mousedown', () => window.loadPage('Home'));
+    homeButton.addEventListener('mousedown', () => { window.loadPage('Home'),console.log('setting pressed')});
   }
 
   if (settingsButton) {
     // settingsButton.addEventListener(clickType,() => window.loadPage('Settings'));
-    settingsButton.addEventListener('mousedown',() => window.loadPage('Settings'));
+    settingsButton.addEventListener('mousedown',() => { window.loadPage('Settings'),console.log('setting pressed')});
   }
 
   if (testButton) {
     // testButton.addEventListener(clickType, () =>  window.loadPage('Testpage'));
-    testButton.addEventListener('mousedown', () =>  window.loadPage('Testpage'));
+    testButton.addEventListener('mousedown', () =>  {window.loadPage('Testpage'),console.log('test pressed')});
   }
 
 }

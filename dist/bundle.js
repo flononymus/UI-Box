@@ -33662,6 +33662,7 @@ var App = function App() {
       break;
     default:
       CurrentPage = _pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"];
+    // CurrentPage = Settings;
   }
   window.loadPage = function (page) {
     setPage(page);
@@ -33683,13 +33684,13 @@ function attachEventListeners() {
   if (settingsButton) {
     // settingsButton.addEventListener(clickType,() => window.loadPage('Settings'));
     settingsButton.addEventListener('mousedown', function () {
-      return window.loadPage('Settings');
+      window.loadPage('Settings'), console.log('setting pressed');
     });
   }
   if (testButton) {
     // testButton.addEventListener(clickType, () =>  window.loadPage('Testpage'));
     testButton.addEventListener('mousedown', function () {
-      return window.loadPage('Testpage');
+      window.loadPage('Testpage'), console.log('test pressed');
     });
   }
 }
