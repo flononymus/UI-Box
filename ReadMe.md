@@ -4,6 +4,10 @@ ___
 A simple UI-sandbox/playground thingy (virtual fidget spinner)
 
 
+### Todo:
+- [ ] Look into electron + webpack
+- [ ] Maybe electron + react
+
 ___
 ### Refs
 
