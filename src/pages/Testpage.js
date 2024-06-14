@@ -10,9 +10,7 @@ export default function Testpage() {
         <div>
             <h1>Testing</h1>
 
-            <button class="button1" id="buttonTest" onClick={testButton}> Button </button>
+            <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
         </div>
     )
 }
-
-// export default Testpage;

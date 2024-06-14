@@ -30,7 +30,20 @@ body {
 
 .button1 {
   width: 150px;
-  border-radius: 25px;
+  /* border-radius: 25px; */
+}
+
+.settingsButton {
+  margin-right: 0.25rem;
+}
+
+.logo {
+  /* width:fit-content; */
+  position:relative;
+  align-items: center;
+  /* justify-self: center; */
+  width:auto;
+  height:60vh;
 }
   
   @media (prefers-color-scheme: dark) {

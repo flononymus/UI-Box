@@ -1,16 +1,33 @@
 import React from 'react'
+import {useState} from "react"
 
-const Settings = () => {
+
+function toggleDarkMode() {
+    const isDarkMode = window.darkMode.toggle()
+    // themeSource = isDarkMode ? 'Dark' : 'Light'
+}
+
+function toggleSystemMode() {
+    window.darkMode.system()
+
+}
+
+
+
+export default function Settings() {
     return(
         <div>
             <h1>Settings</h1>
 
-            <p>Current theme source: <strong id="theme-source">System</strong></p>
+            <p>
+                Current: 
+                <strong id="theme-source">
+                {themeSource}
+                </strong>
+            </p>
         
-            <button id="toggle-dark-mode">Toggle Dark Mode</button>
-            <button id="reset-to-system">Reset to System Theme</button>
+            <button className="settingsButton" id="toggle-dark-mode" onMouseDown={toggleDarkMode}>Toggle Dark Mode</button>
+            <button className="settingsButton" id="reset-to-system" onMouseDown={toggleSystemMode}>Reset to System Theme</button>
         </div>
     )
 }
-
-export default Settings;
