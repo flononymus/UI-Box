@@ -14,67 +14,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
-function testButton() {
-  console.log('test button');
-}
 function Buttons() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isPressed = _useState2[0],
+    setIsPressed = _useState2[1];
+  var handlePress = function handlePress() {
+    console.log('button pressed');
+    setIsPressed(true);
+    setTimeout(function () {
+      setIsPressed(false);
+    }, 50);
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Testing"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column"
-    }
+    className: "buttonContainer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      flex: "row"
-    }
+    className: "buttonRow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "row"
-    }
+    className: "buttonRow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      flex: "row"
-    }
+    className: "buttonRow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
-    onMouseDown: testButton
+    onMouseDown: handlePress
   }, " Button "))));
 }
 
@@ -94,10 +96,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Home() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " UI-Box "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    className: "logo",
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " UI-Box "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "logo"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    className: "logoImg",
     src: "../media/icon.png"
-  }));
+  })));
 }
 
 /***/ }),
@@ -137,10 +141,10 @@ function Particles() {
         x: 0,
         y: 0
       },
-      // mouse = {x:100,y:10},
       radius = 0.5;
-    var colors = ["#6b106a", "#670e6b", "#640d6b", "#600b6c", "#5b0a6d", "#57096d", "#57096d", "#52096e", "#52096e", "#4e086f", "#480870", "#430970", "#3d0971"];
-    var color = ["#ffffff"];
+
+    // var color = ["#ffffff"];
+    var color = [getComputedStyle(document.documentElement).getPropertyValue('--particle-color')];
     var displayText = "O*";
     var ww = canvas.width = window.innerWidth;
     var wh = canvas.height = window.innerHeight;
@@ -355,19 +359,6 @@ function Settings() {
       return 'System';
     }
   }
-
-  // function themeSourceDisplay() {
-  //     if (isDarkMode && !isLightMode) {
-  //         return " Dark"
-  //     }
-  //     if (!isDarkMode && !isLightMode) {
-  //         return " Light"
-  //     }
-  //     else { 
-  //         return " System"
-  //     }
-  // }
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Settings"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Current:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
     id: "theme-source"
   }, themeSourceDisplay())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -431,7 +422,6 @@ function Spinner() {
     setIsDragging(true);
     setDragStartAngle(calculateAngle(e));
     setInitialRotation(rotation);
-    console.log('mouse is down');
   };
   var handleMouseMove = function handleMouseMove(e) {
     if (isDragging) {
@@ -452,6 +442,8 @@ function Spinner() {
     };
   }, [isDragging, dragStartAngle, initialRotation]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Spinner "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "spinnerDiv"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "spinner",
     ref: spinnerRef,
     onMouseDown: handleMouseDown,
@@ -467,16 +459,22 @@ function Spinner() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "spinnerCircle",
     style: {
-      top: '87.5%',
-      left: '25%'
+      top: '100%',
+      left: '50%'
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "spinnerCircle",
     style: {
-      top: '87.5%',
-      left: '75%'
+      top: '50%',
+      left: '0%'
     }
-  })));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "spinnerCircle",
+    style: {
+      top: '50%',
+      left: '100%'
+    }
+  }))));
 }
 
 /***/ }),

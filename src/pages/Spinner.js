@@ -20,7 +20,6 @@ export default function Spinner() {
         setIsDragging(true);
         setDragStartAngle(calculateAngle(e));
         setInitialRotation(rotation);
-        console.log('mouse is down')
     };
 
     const handleMouseMove = (e) => {
@@ -47,6 +46,7 @@ export default function Spinner() {
     return(
         <div>
             <h1> Spinner </h1>
+            <div className="spinnerDiv">
                 <div
                     className="spinner"
                     ref={spinnerRef}
@@ -54,8 +54,10 @@ export default function Spinner() {
                     style={{ transform: `rotate(${rotation}deg)` }}
                     >
                         <div className="spinnerCircle" style={{ top: '0%', left: '50%' }}></div>
-                        <div className="spinnerCircle" style={{ top: '87.5%', left: '25%' }}></div>
-                        <div className="spinnerCircle" style={{ top: '87.5%', left: '75%' }}></div>
+                        <div className="spinnerCircle" style={{ top: '100%', left: '50%' }}></div>
+                        <div className="spinnerCircle" style={{ top: '50%', left: '0%' }}></div>
+                        <div className="spinnerCircle" style={{ top: '50%', left: '100%' }}></div>
+                </div>
                 </div>
         </div>    
     )

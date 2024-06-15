@@ -1,5 +1,8 @@
 :root {
     color-scheme: light dark;
+
+    --particle-color-dark: #333; /* Black for light mode */
+    --particle-color-light: #ffffff; 
   }
 
 body {
@@ -12,10 +15,8 @@ body {
 
 .navbar{
   display: flex;
-  /* flex-direction: column; */
   width: 100px;
   bottom:2rem;
-  /* height: 80vh; */
 }
 
 .navbar button{
@@ -23,16 +24,40 @@ body {
   margin-right:0.25rem;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust spacing between rows */
+}
 
 .button1 {
   width: 100px;
   height: 100px;
+  padding: 10px 20px; 
   border-radius: 50px;
   margin:0.25rem;
+
+  /* transition: transform 0.2s ease; */
+  transition: transform 0.3s ease;
 }
 
 .button1:hover {
-  scale: 1.1;
+  transform: scale(1.05);
+}
+
+.button1:active{
+  --scale-factor:0.95;
+  transform: scale(var(--scale-factor));
 }
 
 .settingsButton {
@@ -40,31 +65,57 @@ body {
 }
 
 .logo {
-  /* width:fit-content; */
-  position:relative;
+  display:flex;
+  justify-content: center;
   align-items: center;
-  /* justify-self: center; */
-  width:auto;
-  height:60vh;
+  /* width:auto; */
+  /* height:60vh; */
+  height:400px;
+}
+.logoImg {
+  width:400px;
+  height:400px;
+}
+
+.spinnerDiv {
+  margin-top:3rem;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .spinner {
   position:relative;
-  width:200px;
-  height:200px;
+  width:250px;
+  height:250px;
+
   border-radius: 50%;
+  /* margin:100px auto; */
+  border:2px solid white;
 }
+
 .spinnerCircle {
   position:absolute;
-  width:30px;
-  height:30px;
+  width:50px;
+  height:50px;
+
+  background-color: white;
+  transform:translate(-50%,-50%);
   border-radius: 50%;
 }
   
   @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }
+    :root {
+      --particle-color: var(--particle-color-light);
+    }
   }
   
   @media (prefers-color-scheme: light) {
-    body { background: #ddd; color: black; }
+    body { background: #ddd; color: #333; }
+    .spinner {border:2px solid #333;}
+    .spinnerCircle {background-color: #333;}
+    :root {
+      --particle-color: var(--particle-color-dark);
+    }
   }

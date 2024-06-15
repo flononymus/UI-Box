@@ -11,28 +11,15 @@ export default function Particles(){
         particles = [],
         amount = 0,
         mouse = {x:0,y:0},
-        // mouse = {x:100,y:10},
         radius = 0.5;
         
+          // var color = ["#ffffff"];
+          const color = [getComputedStyle(document.documentElement).getPropertyValue('--particle-color')];
 
-        var colors= ["#6b106a",
-          "#670e6b",
-          "#640d6b",
-          "#600b6c",
-          "#5b0a6d", 
-          "#57096d",
-          "#57096d",
-          "#52096e",
-          "#52096e",
-          "#4e086f",
-          "#480870",
-          "#430970",
-          "#3d0971"]
-
-          var color = ["#ffffff"];
         
           var displayText = "O*"
           
+
           var ww = canvas.width = window.innerWidth;
           var wh = canvas.height = window.innerHeight;
           
