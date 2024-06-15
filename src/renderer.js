@@ -3,6 +3,8 @@ import {createRoot} from 'react-dom/client'
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import Testpage from './pages/Testpage';
+import Spinner from './pages/Spinner';
+import Particles from './pages/Particles';
 
 
 const App = () => {
@@ -19,6 +21,12 @@ const App = () => {
         case 'Testpage':
             CurrentPage = Testpage;
             break;
+        case 'Spinner':
+          CurrentPage = Spinner;
+        break;
+        case 'Particles':
+          CurrentPage = Particles;
+        break;
         default:
             CurrentPage = Home;
     }
@@ -38,12 +46,14 @@ function attachEventListeners() {
   const homeButton= document.getElementById('homeButton');
   const settingsButton= document.getElementById('settingsButton');
   const testPageButton= document.getElementById('testpageButton');
+  const spinnerPageButton= document.getElementById('spinnerpageButton');
+  const particlesPageButton= document.getElementById('particlespageButton');
 
-  const testButton = document.getElementById('buttonTest');
+  // const testButton = document.getElementById('buttonTest');
 
-    if (homeButton) {
-      homeButton.addEventListener(clickType, () => window.loadPage('Home'));
-    }
+  if (homeButton) {
+    homeButton.addEventListener(clickType, () => window.loadPage('Home'));
+  }
 
   if (settingsButton) {
     settingsButton.addEventListener(clickType,() => window.loadPage('Settings'));
@@ -51,6 +61,14 @@ function attachEventListeners() {
 
   if (testPageButton) {
     testPageButton.addEventListener(clickType, () =>  window.loadPage('Testpage'));
+  }
+
+  if (spinnerPageButton) {
+    spinnerPageButton.addEventListener(clickType, () =>  window.loadPage('Spinner'));
+  }
+
+  if (particlesPageButton) {
+    particlesPageButton.addEventListener(clickType, () =>  window.loadPage('Particles'));
   }
 
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => {
+export default function Home() {
     return(
         <div>
             <h1> UI-Box </h1>
@@ -8,5 +8,3 @@ const Home = () => {
         </div>    
     )
 }
-
-export default Home

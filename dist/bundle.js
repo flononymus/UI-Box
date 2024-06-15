@@ -10,18 +10,188 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ Home)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var Home = function Home() {
+function Home() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " UI-Box "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
     className: "logo",
     src: "../media/icon.png"
   }));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
+}
+
+/***/ }),
+
+/***/ "./src/pages/Particles.js":
+/*!********************************!*\
+  !*** ./src/pages/Particles.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Particles)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+function Particles() {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var canvas = document.querySelector("#scene"),
+      ctx = canvas.getContext("2d", {
+        willReadFrequently: true
+      }),
+      particles = [],
+      amount = 0,
+      mouse = {
+        x: 0,
+        y: 0
+      },
+      radius = 0.5;
+    var color = ["#ffffff"];
+    var displayText = "O";
+    var ww = canvas.width = window.innerWidth;
+    var wh = canvas.height = window.innerHeight;
+    var Particle = /*#__PURE__*/function () {
+      function Particle(x, y) {
+        _classCallCheck(this, Particle);
+        this.x = x;
+        this.y = y;
+        this.dest = {
+          x: x,
+          y: y
+        };
+
+        //   this.r = ww / 600;
+        this.r = ww / 50;
+        this.vx = 0;
+        this.vy = 0;
+        this.accX = 0;
+        this.accY = 0;
+        this.friction = 0.7;
+        this.color = color;
+      }
+      return _createClass(Particle, [{
+        key: "render",
+        value: function render() {
+          this.accX = (this.dest.x - this.x) / 100;
+          this.accY = (this.dest.y - this.y) / 100;
+          this.vx += this.accX;
+          this.vy += this.accY;
+          this.vx *= this.friction;
+          this.vy *= this.friction;
+          this.x += this.vx;
+          this.y += this.vy;
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+          ctx.fill();
+          var a = this.x - mouse.x;
+          var b = this.y - mouse.y;
+          var distance = Math.sqrt(a * a + b * b);
+          if (distance < radius * 60) {
+            this.accX = this.x - mouse.x;
+            this.accY = this.y - mouse.y;
+            this.vx += this.accX;
+            this.vy += this.accY;
+          }
+          if (distance > radius * 250) {
+            this.accX = (this.dest.x - this.x) / 10;
+            this.accY = (this.dest.y - this.y) / 10;
+            this.vx += this.accX;
+            this.vy += this.accY;
+          }
+        }
+      }]);
+    }();
+    function onMouseMove(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    }
+    function onTouchMove(e) {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    }
+    function onTouchEnd(e) {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    }
+    function initScene() {
+      ww = canvas.width = window.innerWidth;
+      wh = canvas.height = window.innerHeight / 5 * 4;
+      if (ww < 500) {
+        //   ctx.font = `${(ww / 7)}px ${assistant.style.fontFamily}`;
+        ctx.font = '100px';
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // ctx.font = `${(ww / 10)}px ${assistant.style.fontFamily}`;
+        // ctx.font = (ww / 10);
+        ctx.font = '100px';
+      }
+      ctx.textAlign = "center";
+      // ctx.fillText(displayText, ww/2, wh/2.5);
+      ctx.fillText(displayText, ww / 2, wh / 3);
+      var data = ctx.getImageData(0, 0, ww, wh).data;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalCompositeOperation = "screen";
+      var divider = 250;
+      particles = [];
+      for (var i = 0; i < ww; i += Math.round(ww / divider)) {
+        for (var j = 0; j < wh; j += Math.round(ww / divider)) {
+          if (data[(i + j * ww) * 4 + 3] > divider) {
+            particles.push(new Particle(i, j));
+          }
+        }
+      }
+      amount = particles.length;
+    }
+    function onMouseDown() {
+      radius = 2;
+    }
+    function onMouseUp() {
+      radius = 0.5;
+    }
+    function render() {
+      // frame.current = requestAnimationFrame(render);
+      requestAnimationFrame(render);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < amount; i++) {
+        particles[i].render();
+      }
+      // return () => cancelAnimationFrame(frame.current)
+      // return () => cancelAnimationFrame(render)
+    }
+    ;
+    window.addEventListener("resize", initScene);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchend", onTouchEnd);
+    initScene();
+    requestAnimationFrame(render);
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Particles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
+    style: {
+      width: 'auto',
+      height: '70vh',
+      position: 'absolute'
+    },
+    id: "scene"
+  }));
+}
 
 /***/ }),
 
@@ -123,6 +293,25 @@ function Settings() {
     id: "reset-to-system",
     onMouseDown: toggleSystemMode
   }, "Reset to System Theme"));
+}
+
+/***/ }),
+
+/***/ "./src/pages/Spinner.js":
+/*!******************************!*\
+  !*** ./src/pages/Spinner.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Spinner)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Spinner() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Spinner "));
 }
 
 /***/ }),
@@ -33672,12 +33861,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Home */ "./src/pages/Home.js");
 /* harmony import */ var _pages_Settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Settings */ "./src/pages/Settings.js");
 /* harmony import */ var _pages_Testpage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Testpage */ "./src/pages/Testpage.js");
+/* harmony import */ var _pages_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Spinner */ "./src/pages/Spinner.js");
+/* harmony import */ var _pages_Particles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Particles */ "./src/pages/Particles.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
 
 
 
@@ -33699,6 +33892,12 @@ var App = function App() {
     case 'Testpage':
       CurrentPage = _pages_Testpage__WEBPACK_IMPORTED_MODULE_4__["default"];
       break;
+    case 'Spinner':
+      CurrentPage = _pages_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"];
+      break;
+    case 'Particles':
+      CurrentPage = _pages_Particles__WEBPACK_IMPORTED_MODULE_6__["default"];
+      break;
     default:
       CurrentPage = _pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"];
   }
@@ -33712,7 +33911,11 @@ function attachEventListeners() {
   var homeButton = document.getElementById('homeButton');
   var settingsButton = document.getElementById('settingsButton');
   var testPageButton = document.getElementById('testpageButton');
-  var testButton = document.getElementById('buttonTest');
+  var spinnerPageButton = document.getElementById('spinnerpageButton');
+  var particlesPageButton = document.getElementById('particlespageButton');
+
+  // const testButton = document.getElementById('buttonTest');
+
   if (homeButton) {
     homeButton.addEventListener(clickType, function () {
       return window.loadPage('Home');
@@ -33726,6 +33929,16 @@ function attachEventListeners() {
   if (testPageButton) {
     testPageButton.addEventListener(clickType, function () {
       return window.loadPage('Testpage');
+    });
+  }
+  if (spinnerPageButton) {
+    spinnerPageButton.addEventListener(clickType, function () {
+      return window.loadPage('Spinner');
+    });
+  }
+  if (particlesPageButton) {
+    particlesPageButton.addEventListener(clickType, function () {
+      return window.loadPage('Particles');
     });
   }
 }

@@ -33,13 +33,7 @@ function createWindow() {
 
   ipcMain.handle('dark-mode:get-theme-source', () => {
     return nativeTheme.themeSource;
-});
-
-
-ipcMain.handle('dark-mode:get-theme-source', () => {
-  return nativeTheme.themeSource;
-});
-
+  });
 
 }
 
