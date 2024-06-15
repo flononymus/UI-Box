@@ -8,8 +8,6 @@ body {
     margin: auto;
     max-width: 38rem;
     padding: 2rem;
-    /* background-color: #333; */
-    /* color:white; */
 }
 
 .navbar{
@@ -22,15 +20,19 @@ body {
 
 .navbar button{
   width: 100px;
-  /* margin-top:0.25rem;
-  margin-bottom:0.25rem; */
   margin-right:0.25rem;
 }
 
 
 .button1 {
-  width: 150px;
-  /* border-radius: 25px; */
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin:0.25rem;
+}
+
+.button1:hover {
+  scale: 1.1;
 }
 
 .settingsButton {

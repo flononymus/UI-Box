@@ -5,7 +5,22 @@ A simple UI-sandbox/playground built with Electron and React
 
 
 ### <ins>Todo:</ins>
-- [ ] Working darkmode toggle
+- **Pages + Functionality**
+  - [ ] **Particles**
+    - [ ] Figure out why mouse isnt at center 
+    - [ ] Fix font not displaying
+    - [ ] Fix canvas size
+
+- **Styles + Design**
+  - [ ] **Navbar & Menus**
+    - [ ] Navbar better style
+    - [ ] Icons instead of text
+
+- **General/QOL**
+  - [ ] Fix content centered in the middle of screen
+  - [x] Working darkmode toggle
+
+
 
 
 ___

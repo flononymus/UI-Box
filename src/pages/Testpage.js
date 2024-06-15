@@ -10,7 +10,26 @@ export default function Testpage() {
         <div>
             <h1>Testing</h1>
 
-            <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+            <div style={{display:"flex", flexDirection:"column"}}>
+                <div style={{display:"flex", flex:"row"}}>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                </div>
+
+                <div style={{display:"flex", flexDirection:"row"}}>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                </div>
+
+                <div style={{display:"flex", flex:"row"}}>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                <button className="button1" id="buttonTest" onMouseDown={testButton}> Button </button>
+                </div>
+            </div>
+
         </div>
     )
 }
