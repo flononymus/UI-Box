@@ -411,6 +411,15 @@ function Spinner() {
     _useState8 = _slicedToArray(_useState7, 2),
     initialRotation = _useState8[0],
     setInitialRotation = _useState8[1];
+  var handleWheel = function handleWheel(event) {
+    var scrollAmount = event.deltaY;
+    var rotationIncrement = 3;
+    var direction = scrollAmount < 0 ? 1 : -1;
+    var currentRotation = spinnerRef.current.style.transform;
+    var currentRotationValue = parseInt(currentRotation.replace('rotate(', '').replace('deg)', ''), 10) || 0;
+    var newRotation = currentRotationValue + direction * rotationIncrement;
+    spinnerRef.current.style.transform = "rotate(".concat(newRotation, "deg)");
+  };
   var calculateAngle = function calculateAngle(e) {
     var rect = spinnerRef.current.getBoundingClientRect();
     var spinnerX = rect.left + rect.width / 2;
@@ -433,6 +442,12 @@ function Spinner() {
   var handleMouseUp = function handleMouseUp() {
     setIsDragging(false);
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    window.addEventListener('wheel', handleWheel);
+    return function () {
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseup', handleMouseUp);

@@ -78,7 +78,7 @@ body {
 }
 
 .spinnerDiv {
-  margin-top:3rem;
+  margin:3rem;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -91,13 +91,13 @@ body {
 
   border-radius: 50%;
   /* margin:100px auto; */
-  border:2px solid white;
+  border:5px solid white;
 }
 
 .spinnerCircle {
   position:absolute;
-  width:50px;
-  height:50px;
+  width:65px;
+  height:65px;
 
   background-color: white;
   transform:translate(-50%,-50%);
@@ -113,7 +113,7 @@ body {
   
   @media (prefers-color-scheme: light) {
     body { background: #ddd; color: #333; }
-    .spinner {border:2px solid #333;}
+    .spinner {border:5px solid #333;}
     .spinnerCircle {background-color: #333;}
     :root {
       --particle-color: var(--particle-color-dark);

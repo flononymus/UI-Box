@@ -7,7 +7,22 @@ export default function Spinner() {
     const [rotation, setRotation] = useState(0);
     const [dragStartAngle, setDragStartAngle] = useState(0);
     const [initialRotation, setInitialRotation] = useState(0);
-    
+
+
+    const handleWheel = (event) => {
+        const scrollAmount = event.deltaY;
+        const rotationIncrement = 3;
+
+        const direction = scrollAmount < 0 ? 1 : -1;
+
+        const currentRotation = spinnerRef.current.style.transform;
+        const currentRotationValue = parseInt(currentRotation.replace('rotate(', '').replace('deg)', ''), 10) || 0;
+
+        const newRotation = currentRotationValue + direction * rotationIncrement;
+
+        spinnerRef.current.style.transform = `rotate(${newRotation}deg)`;
+    };
+
     const calculateAngle = (e) => {
         const rect = spinnerRef.current.getBoundingClientRect();
         const spinnerX = rect.left + rect.width / 2;
@@ -24,15 +39,23 @@ export default function Spinner() {
 
     const handleMouseMove = (e) => {
         if (isDragging) {
-        const currentAngle = calculateAngle(e);
-        const angleDiff = currentAngle - dragStartAngle;
-        setRotation(initialRotation + angleDiff);
+            const currentAngle = calculateAngle(e);
+            const angleDiff = currentAngle - dragStartAngle;
+            setRotation(initialRotation + angleDiff);
         }
     };
 
     const handleMouseUp = () => {
         setIsDragging(false);
     };
+
+    useEffect(() => {
+        window.addEventListener('wheel', handleWheel);
+
+        return () => {
+            window.removeEventListener('wheel', handleWheel);
+        };
+    }, []);
 
     useEffect(() => {
         window.addEventListener('mousemove', handleMouseMove);
