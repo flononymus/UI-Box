@@ -5,20 +5,38 @@ A simple UI-sandbox/playground built with Electron and React
 
 
 ### <ins>Todo:</ins>
+
 - **Pages + Functionality**
+
   - [ ] **Particles**
     - [ ] Figure out why mouse isnt at center 
     - [ ] Fix font not displaying
     - [ ] Fix canvas size
 
+  - **Spinner**
+    - [ ] Figure out if possible
+
+  - [ ] **Buttons**
+    - [ ] Smoother animations
+
 - **Styles + Design**
+
   - [ ] **Navbar & Menus**
     - [ ] Navbar better style
     - [ ] Icons instead of text
 
+  - [ ] **Logo**
+    - [ ] Fix/Design better logo
+
 - **General/QOL**
   - [ ] Fix content centered in the middle of screen
+  - [ ] Page transitions
   - [x] Working darkmode toggle
+
+- **Dependencies & Libraries**
+  - [ ] Framer Motion possible?
+  - [ ] Google for other animation libraries
+  - [ ] NodeGUI
 
 
 
