@@ -9,16 +9,20 @@ ___
 
 - **Pages + Functionality**
 
-  - [ ] **Particles**
-    - [ ] Figure out why mouse isnt at center 
-    - [ ] Fix font not displaying
-    - [ ] Fix canvas size
+  - [x] **Particles**
+    - [x] Figure out why mouse isnt at center 
+    - [x] Fix font not displaying
+    - [x] Fix canvas size
 
   - **Spinner**
-    - [ ] Figure out if possible
+    - [x] Figure out if possible
+    - [x] Mousewheel
+    - [ ] Add velocity and friction
+
 
   - [ ] **Buttons**
-    - [ ] Smoother animations
+    - [x] Smoother animations
+    - [ ] Effects onpress
 
   - [ ] **More examples**
     - [ ] yo-yo thing?
@@ -32,9 +36,10 @@ ___
   - [ ] **Logo**
     - [ ] Fix/Design better logo
     - [ ] Banner for readme
+    - [x] Center on page
 
 - **General/QOL**
-  - [ ] Fix content centered in the middle of screen
+  - [x] Fix content centered in the middle of screen
   - [ ] Page transitions
   - [x] Working darkmode toggle
 
@@ -42,7 +47,6 @@ ___
   - [ ] Framer Motion possible?
   - [ ] Google for other animation libraries
   - [ ] NodeGUI
-
 
 
 
