@@ -47,6 +47,19 @@ body {
   width:auto;
   height:60vh;
 }
+
+.spinner {
+  position:relative;
+  width:200px;
+  height:200px;
+  border-radius: 50%;
+}
+.spinnerCircle {
+  position:absolute;
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+}
   
   @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }

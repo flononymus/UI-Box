@@ -37,21 +37,6 @@ export default function Settings() {
         }
     }
 
-
-    // function themeSourceDisplay() {
-    //     if (isDarkMode && !isLightMode) {
-    //         return " Dark"
-    //     }
-    //     if (!isDarkMode && !isLightMode) {
-    //         return " Light"
-    //     }
-    //     else { 
-    //         return " System"
-    //     }
-    // }
-
-
-
     return(
         <div>
             <h1>Settings</h1>
