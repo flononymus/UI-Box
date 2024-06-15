@@ -3,6 +3,7 @@ ___
 
 A simple UI-sandbox/playground built with Electron and React
 
+___
 
 ### <ins>Todo:</ins>
 
@@ -27,6 +28,7 @@ A simple UI-sandbox/playground built with Electron and React
 
   - [ ] **Logo**
     - [ ] Fix/Design better logo
+    - [ ] Banner for readme
 
 - **General/QOL**
   - [ ] Fix content centered in the middle of screen
