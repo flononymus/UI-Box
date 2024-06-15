@@ -115,6 +115,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
 function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
@@ -136,9 +137,11 @@ function Particles() {
         x: 0,
         y: 0
       },
+      // mouse = {x:100,y:10},
       radius = 0.5;
+    var colors = ["#6b106a", "#670e6b", "#640d6b", "#600b6c", "#5b0a6d", "#57096d", "#57096d", "#52096e", "#52096e", "#4e086f", "#480870", "#430970", "#3d0971"];
     var color = ["#ffffff"];
-    var displayText = "O";
+    var displayText = "O*";
     var ww = canvas.width = window.innerWidth;
     var wh = canvas.height = window.innerHeight;
     var Particle = /*#__PURE__*/function () {
@@ -152,7 +155,8 @@ function Particles() {
         };
 
         //   this.r = ww / 600;
-        this.r = ww / 50;
+        // this.r = ww/50
+        this.r = ww / 100;
         this.vx = 0;
         this.vy = 0;
         this.accX = 0;
@@ -193,40 +197,41 @@ function Particles() {
         }
       }]);
     }();
-    function onMouseMove(e) {
+    var onMouseMove = function onMouseMove(e) {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-    }
-    function onTouchMove(e) {
+    };
+    var onTouchMove = function onTouchMove(e) {
       if (e.touches.length > 0) {
         mouse.x = e.touches[0].clientX;
         mouse.y = e.touches[0].clientY;
       }
-    }
-    function onTouchEnd(e) {
+    };
+    var onTouchEnd = function onTouchEnd(e) {
       mouse.x = -9999;
       mouse.y = -9999;
-    }
+    };
+    var onMouseDown = function onMouseDown() {
+      radius = 2;
+    };
+    var onMouseUp = function onMouseUp() {
+      radius = 0.5;
+    };
     function initScene() {
       ww = canvas.width = window.innerWidth;
-      wh = canvas.height = window.innerHeight / 5 * 4;
+      wh = canvas.height = window.innerHeight;
       if (ww < 500) {
-        //   ctx.font = `${(ww / 7)}px ${assistant.style.fontFamily}`;
-        ctx.font = '100px';
+        ctx.font = "400px Arial";
       } else {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // ctx.font = `${(ww / 10)}px ${assistant.style.fontFamily}`;
-        // ctx.font = (ww / 10);
-        ctx.font = '100px';
+        ctx.font = "400px Arial";
       }
       ctx.textAlign = "center";
-      // ctx.fillText(displayText, ww/2, wh/2.5);
-      ctx.fillText(displayText, ww / 2, wh / 3);
+      ctx.fillText(displayText, ww / 2, wh / 1.2);
       var data = ctx.getImageData(0, 0, ww, wh).data;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.globalCompositeOperation = "screen";
-      var divider = 250;
+      var divider = 50;
       particles = [];
       for (var i = 0; i < ww; i += Math.round(ww / divider)) {
         for (var j = 0; j < wh; j += Math.round(ww / divider)) {
@@ -237,21 +242,12 @@ function Particles() {
       }
       amount = particles.length;
     }
-    function onMouseDown() {
-      radius = 2;
-    }
-    function onMouseUp() {
-      radius = 0.5;
-    }
     function render() {
-      // frame.current = requestAnimationFrame(render);
       requestAnimationFrame(render);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (var i = 0; i < amount; i++) {
         particles[i].render();
       }
-      // return () => cancelAnimationFrame(frame.current)
-      // return () => cancelAnimationFrame(render)
     }
     ;
     window.addEventListener("resize", initScene);
@@ -262,13 +258,23 @@ function Particles() {
     window.addEventListener("touchend", onTouchEnd);
     initScene();
     requestAnimationFrame(render);
+    return function () {
+      window.removeEventListener("resize", initScene);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Particles "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
-    style: {
-      width: 'auto',
-      height: '70vh',
-      position: 'absolute'
-    },
+    style: _defineProperty(_defineProperty(_defineProperty(_defineProperty({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      position: 'absolute',
+      top: 0,
+      left: 0
+    }, "width", '100vw'), "height", '100vh'), "overflow", 'hidden'), "zIndex", -10),
     id: "scene"
   }));
 }

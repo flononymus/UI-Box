@@ -1,7 +1,13 @@
-const { contextBridge, ipcRenderer } = require('electron/renderer')
+const { contextBridge, ipcRenderer} = require('electron/renderer')
+const { screen } = require('electron')
 
 contextBridge.exposeInMainWorld('electron', {
     ipcRenderer: ipcRenderer,
+    screen: {
+      getCursorScreenPoint: () => screen.getCursorScreenPoint(),
+      getPrimaryDisplay: () => screen.getPrimaryDisplay(),
+      getAllDisplays: () => screen.getAllDisplays()
+  }
 });
 
 contextBridge.exposeInMainWorld('darkMode', {

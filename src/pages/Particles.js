@@ -11,11 +11,27 @@ export default function Particles(){
         particles = [],
         amount = 0,
         mouse = {x:0,y:0},
+        // mouse = {x:100,y:10},
         radius = 0.5;
         
+
+        var colors= ["#6b106a",
+          "#670e6b",
+          "#640d6b",
+          "#600b6c",
+          "#5b0a6d", 
+          "#57096d",
+          "#57096d",
+          "#52096e",
+          "#52096e",
+          "#4e086f",
+          "#480870",
+          "#430970",
+          "#3d0971"]
+
           var color = ["#ffffff"];
         
-          var displayText = "O"
+          var displayText = "O*"
           
           var ww = canvas.width = window.innerWidth;
           var wh = canvas.height = window.innerHeight;
@@ -30,7 +46,8 @@ export default function Particles(){
               };
         
             //   this.r = ww / 600;
-            this.r = ww/50
+            // this.r = ww/50
+            this.r = ww/100
         
               this.vx = 0;
               this.vy = 0;
@@ -83,52 +100,54 @@ export default function Particles(){
         
             }
           }
-         
           
-          
-          function onMouseMove(e){
+          const onMouseMove = (e) => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
           }
         
-          function onTouchMove(e){
+            const onTouchMove = (e) => {
             if(e.touches.length > 0 ){
               mouse.x = e.touches[0].clientX;
               mouse.y = e.touches[0].clientY;
             }
           }
-          function onTouchEnd(e){
+
+          const onTouchEnd = (e) => {
           mouse.x = -9999;
           mouse.y = -9999;
+          }
+
+          const onMouseDown = () => {
+            radius = 2;
+          }
+
+          const onMouseUp = () => {
+              radius = 0.5;
           }
           
           function initScene(){
             ww = canvas.width = window.innerWidth;
-            wh = canvas.height = window.innerHeight/5 * 4;
+            wh = canvas.height = window.innerHeight;
         
             if (ww < 500) {
-            //   ctx.font = `${(ww / 7)}px ${assistant.style.fontFamily}`;
-              ctx.font = '100px';
+              ctx.font = "400px Arial";
             }
         
             else {
           
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-          
-            // ctx.font = `${(ww / 10)}px ${assistant.style.fontFamily}`;
-            // ctx.font = (ww / 10);
-            ctx.font = '100px';
+            ctx.font = "400px Arial";
             }
         
             ctx.textAlign = "center";
-            // ctx.fillText(displayText, ww/2, wh/2.5);
-            ctx.fillText(displayText, ww/2, wh/3);
+            ctx.fillText(displayText, ww/2, wh/1.2);
           
             var data  = ctx.getImageData(0, 0, ww, wh).data;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.globalCompositeOperation = "screen";
         
-            var divider = 250
+            var divider = 50
           
             particles = [];
             for(var i=0;i<ww;i+=Math.round(ww/divider)){
@@ -141,23 +160,13 @@ export default function Particles(){
             amount = particles.length;
           
           }
-        
-        function onMouseDown() {
-            radius = 2;
-        }
-        function onMouseUp() {
-            radius = 0.5;
-        }
-          
+
           function render() {
-            // frame.current = requestAnimationFrame(render);
             requestAnimationFrame(render)
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (var i = 0; i < amount; i++) {
               particles[i].render();
             }
-            // return () => cancelAnimationFrame(frame.current)
-            // return () => cancelAnimationFrame(render)
           };
           
           window.addEventListener("resize", initScene);
@@ -168,15 +177,30 @@ export default function Particles(){
           window.addEventListener("touchend", onTouchEnd);
           initScene();
           requestAnimationFrame(render);
-          }, []);
+
+          return () => {
+            window.removeEventListener("resize", initScene);
+            window.removeEventListener("mousemove", onMouseMove);
+            window.removeEventListener("touchmove", onTouchMove);
+            window.removeEventListener("mousedown", onMouseDown);
+            window.removeEventListener("mouseup", onMouseUp);
+            window.removeEventListener("touchend", onTouchEnd);
+          };
+        }, []);
         
           return (
             <div>
             <h1> Particles </h1>
                 <canvas style={{
-                    width:'auto', 
-                    height:'70vh', 
+                    width:window.innerWidth, 
+                    height:window.innerHeight,
                     position:'absolute',
+                    top:0,
+                    left:0,
+                    width:'100vw',
+                    height:'100vh',
+                    overflow:'hidden',
+                    zIndex:-10
                     }} 
                     id="scene">
                     </canvas>

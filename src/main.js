@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron')
-const path = require('node:path')
+const path = require('path')
 
 
 function createWindow() {
@@ -8,7 +8,8 @@ function createWindow() {
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true, 
+      // nodeIntegration: true, 
+      nodeIntegration: false, 
       contextIsolation: true,
       enableRemoteModule:false,
     }
