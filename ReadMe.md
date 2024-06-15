@@ -20,6 +20,9 @@ ___
   - [ ] **Buttons**
     - [ ] Smoother animations
 
+  - [ ] **More examples**
+    - [ ] yo-yo thing?
+
 - **Styles + Design**
 
   - [ ] **Navbar & Menus**

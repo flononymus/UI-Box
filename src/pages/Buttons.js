@@ -5,7 +5,7 @@ function testButton() {
     console.log('test button');
 }
 
-export default function Testpage() {
+export default function Buttons() {
     return(
         <div>
             <h1>Testing</h1>

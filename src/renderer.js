@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {createRoot} from 'react-dom/client'
 import Home from './pages/Home';
 import Settings from './pages/Settings';
-import Testpage from './pages/Testpage';
+import Buttons from './pages/Buttons';
 import Spinner from './pages/Spinner';
 import Particles from './pages/Particles';
 
@@ -18,8 +18,8 @@ const App = () => {
         case 'Settings':
             CurrentPage = Settings;
             break;
-        case 'Testpage':
-            CurrentPage = Testpage;
+        case 'Buttons':
+            CurrentPage = Buttons;
             break;
         case 'Spinner':
           CurrentPage = Spinner;
@@ -45,7 +45,7 @@ function attachEventListeners() {
 
   const homeButton= document.getElementById('homeButton');
   const settingsButton= document.getElementById('settingsButton');
-  const testPageButton= document.getElementById('testpageButton');
+  const buttonsPageButton= document.getElementById('buttonspageButton');
   const spinnerPageButton= document.getElementById('spinnerpageButton');
   const particlesPageButton= document.getElementById('particlespageButton');
 
@@ -59,8 +59,8 @@ function attachEventListeners() {
     settingsButton.addEventListener(clickType,() => window.loadPage('Settings'));
   }
 
-  if (testPageButton) {
-    testPageButton.addEventListener(clickType, () =>  window.loadPage('Testpage'));
+  if (buttonsPageButton) {
+    buttonsPageButton.addEventListener(clickType, () =>  window.loadPage('Buttons'));
   }
 
   if (spinnerPageButton) {

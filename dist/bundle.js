@@ -2,6 +2,84 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/pages/Buttons.js":
+/*!******************************!*\
+  !*** ./src/pages/Buttons.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Buttons)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function testButton() {
+  console.log('test button');
+}
+function Buttons() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Testing"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: "flex",
+      flex: "row"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "row"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: "flex",
+      flex: "row"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "button1",
+    id: "buttonTest",
+    onMouseDown: testButton
+  }, " Button "))));
+}
+
+/***/ }),
+
 /***/ "./src/pages/Home.js":
 /*!***************************!*\
   !*** ./src/pages/Home.js ***!
@@ -314,84 +392,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function Spinner() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Spinner "));
-}
-
-/***/ }),
-
-/***/ "./src/pages/Testpage.js":
-/*!*******************************!*\
-  !*** ./src/pages/Testpage.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Testpage)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function testButton() {
-  console.log('test button');
-}
-function Testpage() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Testing"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      flex: "row"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "row"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      flex: "row"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    className: "button1",
-    id: "buttonTest",
-    onMouseDown: testButton
-  }, " Button "))));
 }
 
 /***/ }),
@@ -33914,7 +33914,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Home */ "./src/pages/Home.js");
 /* harmony import */ var _pages_Settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Settings */ "./src/pages/Settings.js");
-/* harmony import */ var _pages_Testpage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Testpage */ "./src/pages/Testpage.js");
+/* harmony import */ var _pages_Buttons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Buttons */ "./src/pages/Buttons.js");
 /* harmony import */ var _pages_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Spinner */ "./src/pages/Spinner.js");
 /* harmony import */ var _pages_Particles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Particles */ "./src/pages/Particles.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
@@ -33943,8 +33943,8 @@ var App = function App() {
     case 'Settings':
       CurrentPage = _pages_Settings__WEBPACK_IMPORTED_MODULE_3__["default"];
       break;
-    case 'Testpage':
-      CurrentPage = _pages_Testpage__WEBPACK_IMPORTED_MODULE_4__["default"];
+    case 'Buttons':
+      CurrentPage = _pages_Buttons__WEBPACK_IMPORTED_MODULE_4__["default"];
       break;
     case 'Spinner':
       CurrentPage = _pages_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"];
@@ -33964,7 +33964,7 @@ function attachEventListeners() {
   var clickType = "mousedown";
   var homeButton = document.getElementById('homeButton');
   var settingsButton = document.getElementById('settingsButton');
-  var testPageButton = document.getElementById('testpageButton');
+  var buttonsPageButton = document.getElementById('buttonspageButton');
   var spinnerPageButton = document.getElementById('spinnerpageButton');
   var particlesPageButton = document.getElementById('particlespageButton');
 
@@ -33980,9 +33980,9 @@ function attachEventListeners() {
       return window.loadPage('Settings');
     });
   }
-  if (testPageButton) {
-    testPageButton.addEventListener(clickType, function () {
-      return window.loadPage('Testpage');
+  if (buttonsPageButton) {
+    buttonsPageButton.addEventListener(clickType, function () {
+      return window.loadPage('Buttons');
     });
   }
   if (spinnerPageButton) {
