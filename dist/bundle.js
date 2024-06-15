@@ -411,6 +411,11 @@ function Spinner() {
     _useState8 = _slicedToArray(_useState7, 2),
     initialRotation = _useState8[0],
     setInitialRotation = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState10 = _slicedToArray(_useState9, 2),
+    velocity = _useState10[0],
+    setVelocity = _useState10[1];
+  var friction = 0.75;
   var handleWheel = function handleWheel(event) {
     var scrollAmount = event.deltaY;
     var rotationIncrement = 3;
@@ -419,7 +424,30 @@ function Spinner() {
     var currentRotationValue = parseInt(currentRotation.replace('rotate(', '').replace('deg)', ''), 10) || 0;
     var newRotation = currentRotationValue + direction * rotationIncrement;
     spinnerRef.current.style.transform = "rotate(".concat(newRotation, "deg)");
+    setVelocity(function (prevVelocity) {
+      return prevVelocity + direction * rotationIncrement;
+    });
   };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var animationFrameId;
+    var updateRotation = function updateRotation() {
+      setVelocity(function (prevVelocity) {
+        var newVelocity = prevVelocity * friction;
+        if (Math.abs(newVelocity) < 0.01) {
+          return 0;
+        }
+        setRotation(function (prevRotation) {
+          return prevRotation + newVelocity;
+        });
+        return newVelocity;
+      });
+      animationFrameId = requestAnimationFrame(updateRotation);
+    };
+    updateRotation();
+    return function () {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
   var calculateAngle = function calculateAngle(e) {
     var rect = spinnerRef.current.getBoundingClientRect();
     var spinnerX = rect.left + rect.width / 2;

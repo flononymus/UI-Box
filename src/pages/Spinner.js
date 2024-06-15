@@ -1,3 +1,8 @@
+// https://github.com/Hackinet/fidget-spinner
+// https://codepen.io/guyom/pen/rmXyvR
+
+
+
 import React, { useRef, useEffect, useState } from 'react';
 
 export default function Spinner() {
@@ -8,6 +13,8 @@ export default function Spinner() {
     const [dragStartAngle, setDragStartAngle] = useState(0);
     const [initialRotation, setInitialRotation] = useState(0);
 
+    const [velocity, setVelocity] = useState(0);
+    const friction = 0.75;
 
     const handleWheel = (event) => {
         const scrollAmount = event.deltaY;
@@ -21,7 +28,27 @@ export default function Spinner() {
         const newRotation = currentRotationValue + direction * rotationIncrement;
 
         spinnerRef.current.style.transform = `rotate(${newRotation}deg)`;
+        setVelocity((prevVelocity) => prevVelocity + direction * rotationIncrement);
     };
+
+    useEffect(() => {
+        let animationFrameId;
+        const updateRotation = () => {
+            setVelocity((prevVelocity) => {
+                const newVelocity = prevVelocity * friction;
+                if (Math.abs(newVelocity) < 0.01) {
+                    return 0;
+                }
+                setRotation((prevRotation) => prevRotation + newVelocity);
+                return newVelocity;
+            });
+            animationFrameId = requestAnimationFrame(updateRotation);
+        };
+        updateRotation();
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
 
     const calculateAngle = (e) => {
         const rect = spinnerRef.current.getBoundingClientRect();
@@ -41,6 +68,8 @@ export default function Spinner() {
         if (isDragging) {
             const currentAngle = calculateAngle(e);
             const angleDiff = currentAngle - dragStartAngle;
+
+
             setRotation(initialRotation + angleDiff);
         }
     };
