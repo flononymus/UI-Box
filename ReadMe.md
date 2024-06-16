@@ -5,7 +5,7 @@ A simple UI-sandbox/playground built with Electron and React
 
 ___
 
-![preview](./media/preview.png)
+![preview](./media/preview1.png)
 
 ### <ins>Todo:</ins>
 
