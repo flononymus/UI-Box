@@ -17,7 +17,7 @@ ___
   - **Spinner**
     - [x] Figure out if possible
     - [x] Mousewheel
-    - [ ] Add velocity and friction
+    - [x] Add velocity and friction
 
 
   - [ ] **Buttons**

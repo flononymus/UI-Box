@@ -1,7 +1,7 @@
 :root {
     color-scheme: light dark;
 
-    --particle-color-dark: #333; /* Black for light mode */
+    --particle-color-dark: #333;
     --particle-color-light: #ffffff; 
   }
 
@@ -37,7 +37,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px; /* Adjust spacing between rows */
+  margin-bottom: 10px;
 }
 
 .button1 {
@@ -47,7 +47,6 @@ body {
   border-radius: 50px;
   margin:0.25rem;
 
-  /* transition: transform 0.2s ease; */
   transition: transform 0.3s ease;
 }
 
@@ -68,8 +67,6 @@ body {
   display:flex;
   justify-content: center;
   align-items: center;
-  /* width:auto; */
-  /* height:60vh; */
   height:400px;
 }
 .logoImg {
@@ -91,8 +88,6 @@ body {
   height:250px;
 
   border-radius: 50%;
-  /* margin:100px auto; */
-  /* border:5px solid white; */
 }
 
 .spinnerCircle {
@@ -117,10 +112,58 @@ body {
 
 .line {
   position: absolute;
-  /* position: relative; */
   background-color: white;
   width: 5px;
 }
+
+.logoContainer {
+  display:flex; 
+  justify-content: center;
+  align-items: center;
+  height:400px;
+  width:400px;
+  border-radius: 15%;
+  border: 7px solid white;
+  overflow: hidden;
+  /* position:relative; */
+}
+
+.logoContainer::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 100;
+  width:141.421%;
+  transform: rotate(45deg);
+  transform-origin: 1px 1px;
+  background-color: white;
+}
+
+.logoTextContainer { 
+  position:absolute;
+  justify-content: center;
+  align-items: center;
+}
+
+.topLeftText{
+  /* position: absolute; */
+  position: relative;
+  color: white; 
+  bottom: 50px;
+  right: 30px;
+  font-size: 350px; 
+}
+
+.bottomRightText{
+  position: absolute;
+  /* position: relative; */
+  /* color: #333;  */
+  color: white; 
+  bottom: 20px;
+  right: 0px;
+  font-size: 100px; 
+}
+
   
   @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }
@@ -131,9 +174,12 @@ body {
   
   @media (prefers-color-scheme: light) {
     body { background: #ddd; color: #333; }
+    .logo {filter:invert()}
     .spinnerCircle {background-color: #333;}
-    .spinnerCircleCenter {background-color: #333;}
+    .spinnerCircleCenter {background-color: rgb(51, 51, 51);}
     .line {background-color: #333;}
+    .topLeftText{ color:#333}
+    .bottomRightText{color:white}
     :root {
       --particle-color: var(--particle-color-dark);
     }

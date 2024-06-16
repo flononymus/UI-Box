@@ -98,10 +98,15 @@ __webpack_require__.r(__webpack_exports__);
 function Home() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " UI-Box "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "logo"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    className: "logoImg",
-    src: "../media/icon.png"
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "logoContainer"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "logoTextContainer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    "class": "topLeftText"
+  }, "UI"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    "class": "bottomRightText"
+  }, "BOX"))));
 }
 
 /***/ }),
@@ -392,9 +397,6 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
-// https://github.com/Hackinet/fidget-spinner
-// https://codepen.io/guyom/pen/rmXyvR
-
 
 function Spinner() {
   var spinnerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
@@ -426,10 +428,8 @@ function Spinner() {
   var maxSpeed = 10;
   var handleWheel = function handleWheel(event) {
     var scrollAmount = event.deltaY;
-    // const rotationIncrement = 4;
     var rotationIncrement = 8;
     var direction = scrollAmount < 0 ? -1 : 1;
-    // const newVelocity = velocity + direction * rotationIncrement;
     var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, velocity + direction * rotationIncrement));
     setVelocity(newVelocity);
   };
@@ -453,15 +453,6 @@ function Spinner() {
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
-
-  // const calculateAngle = (e) => {
-  //     const rect = spinnerRef.current.getBoundingClientRect();
-  //     const spinnerX = rect.left + rect.width / 2;
-  //     const spinnerY = rect.top + rect.height / 2;
-  //     const angle = Math.atan2(e.clientY - spinnerY, e.clientX - spinnerX) * (180 / Math.PI);
-  //     return angle;
-  // };
-
   var calculateAngle = function calculateAngle(x, y) {
     var rect = spinnerRef.current.getBoundingClientRect();
     var spinnerX = rect.left + rect.width / 2;
@@ -471,28 +462,20 @@ function Spinner() {
   var handleMouseDown = function handleMouseDown(e) {
     setIsDragging(true);
     var angle = calculateAngle(e.clientX, e.clientY);
-    // setDragStartAngle(calculateAngle(e));
     setDragStartAngle(angle);
     setInitialRotation(rotation);
     setLastTime(Date.now());
   };
   var handleMouseMove = function handleMouseMove(e) {
     if (isDragging) {
-      // const currentAngle = calculateAngle(e);
       var currentAngle = calculateAngle(e.clientX, e.clientY);
       var angleDiff = currentAngle - dragStartAngle;
       var currentTime = Date.now();
-      // const timeDiff = currentTime - lastTime;
       var timeDiff = currentTime - lastTime;
-
-      // setRotation(initialRotation + angleDiff);
-      // setVelocity(angleDiff / timeDiff);
-      // setLastTime(currentTime);
       setRotation(initialRotation + angleDiff);
       if (timeDiff > 0) {
         var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, angleDiff / timeDiff));
         setVelocity(newVelocity);
-        // setVelocity(angleDiff / timeDiff);
       }
       setLastTime(currentTime);
     }
@@ -572,9 +555,6 @@ function Spinner() {
     }
   }))));
 }
-{/* <div className="spinnerCircle" style={{ top: '100%', left: '50%' }}></div>
- <div className="spinnerCircle" style={{ top: '50%', left: '0%' }}></div>
- <div className="spinnerCircle" style={{ top: '50%', left: '100%' }}></div> */}
 
 /***/ }),
 
@@ -34113,7 +34093,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Spinner'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Home'),
     _useState2 = _slicedToArray(_useState, 2),
     page = _useState2[0],
     setPage = _useState2[1];

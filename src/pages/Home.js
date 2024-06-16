@@ -5,8 +5,13 @@ export default function Home() {
         <div>
             <h1> UI-Box </h1>
             <div className="logo">
-            <img className="logoImg" src="../media/icon.png" />
-            </div>
-        </div>    
+                <div className="logoContainer" />
+                <div className="logoTextContainer">
+                    {/* <div class="logoLine"> </div> */}
+                    <div class="topLeftText">UI</div>
+                    <div class="bottomRightText">BOX</div>
+                </div>
+                </div>
+            </div>    
     )
 }
