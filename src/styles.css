@@ -36,7 +36,8 @@ nav {
 }
 
 .material-icons {
-  font-size: 24px;
+  /* font-size: 24px; */
+  font-size: 20px;
 }
 
 .buttonContainer {
