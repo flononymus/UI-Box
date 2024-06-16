@@ -10,18 +10,33 @@ body {
         Arial, sans-serif;
     margin: auto;
     max-width: 38rem;
-    padding: 2rem;
+    /* padding: 2rem; */
+    padding: 1.5rem;
 }
 
-.navbar{
+nav {
   display: flex;
-  width: 100px;
-  bottom:2rem;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+}
+
+#settingsButton {
+  margin-left:auto;
+}
+
+.left-buttons {
+  display:flex;
+  gap:10px;
 }
 
 .navbar button{
   width: 100px;
   margin-right:0.25rem;
+}
+
+.material-icons {
+  font-size: 24px;
 }
 
 .buttonContainer {
@@ -170,11 +185,12 @@ body {
     :root {
       --particle-color: var(--particle-color-light);
     }
+    .logo {filter:invert()}
   }
   
   @media (prefers-color-scheme: light) {
     body { background: #ddd; color: #333; }
-    .logo {filter:invert()}
+    /* .logo {filter:invert()} */
     .spinnerCircle {background-color: #333;}
     .spinnerCircleCenter {background-color: rgb(51, 51, 51);}
     .line {background-color: #333;}
