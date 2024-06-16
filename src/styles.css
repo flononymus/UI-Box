@@ -73,6 +73,7 @@ nav {
 .button1:active{
   --scale-factor:0.95;
   transform: scale(var(--scale-factor));
+  background-color:#333;
 }
 
 .settingsButton {

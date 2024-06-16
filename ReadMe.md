@@ -31,7 +31,7 @@ ___
 
   - [ ] **Navbar & Menus**
     - [ ] Navbar better style
-    - [ ] Icons instead of text
+    - [x] Icons instead of text
 
   - [ ] **Logo**
     - [ ] Fix/Design better logo
@@ -42,12 +42,6 @@ ___
   - [x] Fix content centered in the middle of screen
   - [ ] Page transitions
   - [x] Working darkmode toggle
-
-- **Dependencies & Libraries**
-  - [ ] Framer Motion possible?
-  - [ ] Google for other animation libraries
-  - [ ] NodeGUI
-
 
 
 ___
