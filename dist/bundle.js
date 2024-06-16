@@ -418,18 +418,20 @@ function Spinner() {
     _useState10 = _slicedToArray(_useState9, 2),
     velocity = _useState10[0],
     setVelocity = _useState10[1];
-  var friction = 0.8;
+  var friction = 0.99;
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState12 = _slicedToArray(_useState11, 2),
+    lastTime = _useState12[0],
+    setLastTime = _useState12[1];
+  var maxSpeed = 10;
   var handleWheel = function handleWheel(event) {
     var scrollAmount = event.deltaY;
-    var rotationIncrement = 3;
-    var direction = scrollAmount < 0 ? 1 : -1;
-    var currentRotation = spinnerRef.current.style.transform;
-    var currentRotationValue = parseInt(currentRotation.replace('rotate(', '').replace('deg)', ''), 10) || 0;
-    var newRotation = currentRotationValue + direction * rotationIncrement;
-    spinnerRef.current.style.transform = "rotate(".concat(newRotation, "deg)");
-    setVelocity(function (prevVelocity) {
-      return prevVelocity + direction * rotationIncrement;
-    });
+    // const rotationIncrement = 4;
+    var rotationIncrement = 8;
+    var direction = scrollAmount < 0 ? -1 : 1;
+    // const newVelocity = velocity + direction * rotationIncrement;
+    var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, velocity + direction * rotationIncrement));
+    setVelocity(newVelocity);
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var animationFrameId;
@@ -451,23 +453,48 @@ function Spinner() {
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
-  var calculateAngle = function calculateAngle(e) {
+
+  // const calculateAngle = (e) => {
+  //     const rect = spinnerRef.current.getBoundingClientRect();
+  //     const spinnerX = rect.left + rect.width / 2;
+  //     const spinnerY = rect.top + rect.height / 2;
+  //     const angle = Math.atan2(e.clientY - spinnerY, e.clientX - spinnerX) * (180 / Math.PI);
+  //     return angle;
+  // };
+
+  var calculateAngle = function calculateAngle(x, y) {
     var rect = spinnerRef.current.getBoundingClientRect();
     var spinnerX = rect.left + rect.width / 2;
     var spinnerY = rect.top + rect.height / 2;
-    var angle = Math.atan2(e.clientY - spinnerY, e.clientX - spinnerX) * (180 / Math.PI);
-    return angle;
+    return Math.atan2(y - spinnerY, x - spinnerX) * (180 / Math.PI);
   };
   var handleMouseDown = function handleMouseDown(e) {
     setIsDragging(true);
-    setDragStartAngle(calculateAngle(e));
+    var angle = calculateAngle(e.clientX, e.clientY);
+    // setDragStartAngle(calculateAngle(e));
+    setDragStartAngle(angle);
     setInitialRotation(rotation);
+    setLastTime(Date.now());
   };
   var handleMouseMove = function handleMouseMove(e) {
     if (isDragging) {
-      var currentAngle = calculateAngle(e);
+      // const currentAngle = calculateAngle(e);
+      var currentAngle = calculateAngle(e.clientX, e.clientY);
       var angleDiff = currentAngle - dragStartAngle;
+      var currentTime = Date.now();
+      // const timeDiff = currentTime - lastTime;
+      var timeDiff = currentTime - lastTime;
+
+      // setRotation(initialRotation + angleDiff);
+      // setVelocity(angleDiff / timeDiff);
+      // setLastTime(currentTime);
       setRotation(initialRotation + angleDiff);
+      if (timeDiff > 0) {
+        var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, angleDiff / timeDiff));
+        setVelocity(newVelocity);
+        // setVelocity(angleDiff / timeDiff);
+      }
+      setLastTime(currentTime);
     }
   };
   var handleMouseUp = function handleMouseUp() {
@@ -486,7 +513,7 @@ function Spinner() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDragging, dragStartAngle, initialRotation]);
+  }, [isDragging, dragStartAngle, initialRotation, lastTime]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Spinner "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "spinnerDiv"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -503,7 +530,7 @@ function Spinner() {
       left: '50%'
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "spinnerCircle",
+    className: "spinnerCircleCenter",
     style: {
       top: '50%',
       left: '50%'
@@ -519,6 +546,29 @@ function Spinner() {
     style: {
       top: '75%',
       left: '93.5%'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "line",
+    style: {
+      top: '0%',
+      left: '49%',
+      height: '50%'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "line",
+    style: {
+      top: '36%',
+      left: '29%',
+      height: '50%',
+      transform: 'rotate(60deg'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "line",
+    style: {
+      top: '36%',
+      left: '70%',
+      height: '50%',
+      transform: 'rotate(120deg'
     }
   }))));
 }

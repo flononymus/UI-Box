@@ -78,6 +78,7 @@ body {
 }
 
 .spinnerDiv {
+  position:relative;
   margin:3rem;
   display:flex;
   justify-content: center;
@@ -91,7 +92,7 @@ body {
 
   border-radius: 50%;
   /* margin:100px auto; */
-  border:5px solid white;
+  /* border:5px solid white; */
 }
 
 .spinnerCircle {
@@ -103,6 +104,23 @@ body {
   transform:translate(-50%,-50%);
   border-radius: 50%;
 }
+
+.spinnerCircleCenter {
+  position:absolute;
+  width:35px;
+  height:35px;
+
+  background-color: white;
+  transform:translate(-50%,-50%);
+  border-radius: 50%;
+}
+
+.line {
+  position: absolute;
+  /* position: relative; */
+  background-color: white;
+  width: 5px;
+}
   
   @media (prefers-color-scheme: dark) {
     body { background: #333; color: white; }
@@ -113,8 +131,9 @@ body {
   
   @media (prefers-color-scheme: light) {
     body { background: #ddd; color: #333; }
-    .spinner {border:5px solid #333;}
     .spinnerCircle {background-color: #333;}
+    .spinnerCircleCenter {background-color: #333;}
+    .line {background-color: #333;}
     :root {
       --particle-color: var(--particle-color-dark);
     }
