@@ -14,7 +14,7 @@ export default function Spinner() {
     const [initialRotation, setInitialRotation] = useState(0);
 
     const [velocity, setVelocity] = useState(0);
-    const friction = 0.75;
+    const friction = 0.8;
 
     const handleWheel = (event) => {
         const scrollAmount = event.deltaY;
@@ -36,7 +36,7 @@ export default function Spinner() {
         const updateRotation = () => {
             setVelocity((prevVelocity) => {
                 const newVelocity = prevVelocity * friction;
-                if (Math.abs(newVelocity) < 0.01) {
+                if (Math.abs(newVelocity) < 0.001) {
                     return 0;
                 }
                 setRotation((prevRotation) => prevRotation + newVelocity);
@@ -106,11 +106,15 @@ export default function Spinner() {
                     style={{ transform: `rotate(${rotation}deg)` }}
                     >
                         <div className="spinnerCircle" style={{ top: '0%', left: '50%' }}></div>
-                        <div className="spinnerCircle" style={{ top: '100%', left: '50%' }}></div>
-                        <div className="spinnerCircle" style={{ top: '50%', left: '0%' }}></div>
-                        <div className="spinnerCircle" style={{ top: '50%', left: '100%' }}></div>
+                        <div className="spinnerCircle" style={{ top: '50%', left: '50%' }}></div>
+                        <div className="spinnerCircle" style={{ top: '75%', left: '6.5%' }}></div>
+                        <div className="spinnerCircle" style={{ top: '75%', left: '93.5%' }}></div>
                 </div>
                 </div>
         </div>    
     )
 }
+
+{/* <div className="spinnerCircle" style={{ top: '100%', left: '50%' }}></div>
+<div className="spinnerCircle" style={{ top: '50%', left: '0%' }}></div>
+<div className="spinnerCircle" style={{ top: '50%', left: '100%' }}></div> */}

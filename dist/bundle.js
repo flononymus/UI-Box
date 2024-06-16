@@ -392,6 +392,9 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+// https://github.com/Hackinet/fidget-spinner
+// https://codepen.io/guyom/pen/rmXyvR
+
 
 function Spinner() {
   var spinnerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
@@ -415,7 +418,7 @@ function Spinner() {
     _useState10 = _slicedToArray(_useState9, 2),
     velocity = _useState10[0],
     setVelocity = _useState10[1];
-  var friction = 0.75;
+  var friction = 0.8;
   var handleWheel = function handleWheel(event) {
     var scrollAmount = event.deltaY;
     var rotationIncrement = 3;
@@ -433,7 +436,7 @@ function Spinner() {
     var updateRotation = function updateRotation() {
       setVelocity(function (prevVelocity) {
         var newVelocity = prevVelocity * friction;
-        if (Math.abs(newVelocity) < 0.01) {
+        if (Math.abs(newVelocity) < 0.001) {
           return 0;
         }
         setRotation(function (prevRotation) {
@@ -502,23 +505,26 @@ function Spinner() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "spinnerCircle",
     style: {
-      top: '100%',
+      top: '50%',
       left: '50%'
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "spinnerCircle",
     style: {
-      top: '50%',
-      left: '0%'
+      top: '75%',
+      left: '6.5%'
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "spinnerCircle",
     style: {
-      top: '50%',
-      left: '100%'
+      top: '75%',
+      left: '93.5%'
     }
   }))));
 }
+{/* <div className="spinnerCircle" style={{ top: '100%', left: '50%' }}></div>
+ <div className="spinnerCircle" style={{ top: '50%', left: '0%' }}></div>
+ <div className="spinnerCircle" style={{ top: '50%', left: '100%' }}></div> */}
 
 /***/ }),
 
@@ -34057,7 +34063,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Home'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Spinner'),
     _useState2 = _slicedToArray(_useState, 2),
     page = _useState2[0],
     setPage = _useState2[1];

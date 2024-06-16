@@ -9,7 +9,7 @@ import Particles from './pages/Particles';
 
 const App = () => {
 
-    const [page, setPage] = useState('Home');
+    const [page, setPage] = useState('Spinner');
     let CurrentPage;
     switch (page) {
         case 'Home':
