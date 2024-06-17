@@ -1,5 +1,3 @@
-//https://www.electronjs.org/docs/latest/api/screen
-
 import React from 'react'
 import { useEffect, useRef } from "react";
 

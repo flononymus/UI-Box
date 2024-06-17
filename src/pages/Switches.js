@@ -15,10 +15,10 @@ export default function Switches() {
 
             <div className='centerContainer'>
                 <div className='switcherDiv' 
-                style={{backgroundColor: isSwitched ? "#f4f4f47f" : "#333", transition:'0.3s'}} 
+                style={{backgroundColor: isSwitched ?  "rgba(255, 255, 255, 0.5)" : "#333", transition:'0.3s'}} 
                 onMouseDown={handleSwitch} >
                     <div className='switcherCircle' 
-                    style={{left: isSwitched ? "0px" : "100px", transition:'0.3s', backgroundColor: isSwitched ?  "#333" : "#f4f4f47f"}} 
+                    style={{left: isSwitched ? "0px" : "100px", transition:'0.3s', backgroundColor: isSwitched ?  "#333" : "rgba(255, 255, 255, 0.5)"}} 
                     />
                 </div>
             </div>

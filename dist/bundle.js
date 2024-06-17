@@ -41,43 +41,43 @@ function Buttons() {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "buttonRow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "buttonRow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+  }, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     className: "button1",
     id: "buttonTest",
     onMouseDown: handlePress
-  }, " Button "))));
+  }, " "))));
 }
 
 /***/ }),
@@ -587,16 +587,16 @@ function Switches() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "switcherDiv",
     style: {
-      backgroundColor: isSwitched ? "#f4f4f47f" : "#333",
-      transition: '0.5s'
+      backgroundColor: isSwitched ? "rgba(255, 255, 255, 0.5)" : "#333",
+      transition: '0.3s'
     },
     onMouseDown: handleSwitch
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "switcherCircle",
     style: {
       left: isSwitched ? "0px" : "100px",
-      transition: '0.5s',
-      backgroundColor: isSwitched ? "#333" : "#f4f4f47f"
+      transition: '0.3s',
+      backgroundColor: isSwitched ? "#333" : "rgba(255, 255, 255, 0.5)"
     }
   }))));
 }
@@ -34161,7 +34161,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Switches'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Home'),
     _useState2 = _slicedToArray(_useState, 2),
     page = _useState2[0],
     setPage = _useState2[1];
