@@ -5,9 +5,11 @@ A simple UI-sandbox/playground built with Electron and React
 
 ___
 
-![preview](./media/preview-test.png)
-
+<div align="center">
+    <img src="./media/preview-test.png">
+</div>
 ___
+
 ### Refs and links to check out
 
 https://github.com/daltonmenezes/electron-app
