@@ -6,8 +6,9 @@ A simple UI-sandbox/playground built with Electron and React
 ___
 
 <div align="center">
-    <img src="./media/preview-test.png">
+    <img src="./media/preview.png">
 </div>
+
 ___
 
 ### Refs and links to check out
