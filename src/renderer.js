@@ -11,7 +11,7 @@ import Switches from './pages/Switches'
 
 const App = () => {
 
-    const [page, setPage] = useState('Switches');
+    const [page, setPage] = useState('Home');
     let CurrentPage;
     switch (page) {
         case 'Home':

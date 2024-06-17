@@ -14,13 +14,12 @@ export default function Switches() {
             <h1> Switches </h1>
 
             <div className='centerContainer'>
-                <div className='switcherDiv' style={{backgroundColor: isSwitched ? "#f4f4f47f" : "#333"}}>
+                <div className='switcherDiv' 
+                style={{backgroundColor: isSwitched ? "#f4f4f47f" : "#333", transition:'0.3s'}} 
+                onMouseDown={handleSwitch} >
                     <div className='switcherCircle' 
-                    // style={{left: isSwitched ? "0%" : "100%"}} 
-                    style={{justifySelf: isSwitched ? "right" : "left",
-                       backgroundColor: isSwitched ?  "#333" : "#f4f4f47f"
-                    }} 
-                    onClick={handleSwitch} />
+                    style={{left: isSwitched ? "0px" : "100px", transition:'0.3s', backgroundColor: isSwitched ?  "#333" : "#f4f4f47f"}} 
+                    />
                 </div>
             </div>
             

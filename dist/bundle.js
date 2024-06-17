@@ -421,9 +421,11 @@ function Spinner() {
     lastTime = _useState12[0],
     setLastTime = _useState12[1];
   var maxSpeed = 10;
+  // const maxSpeed = 5 
+
   var handleWheel = function handleWheel(event) {
     var scrollAmount = event.deltaY;
-    var rotationIncrement = 8;
+    var rotationIncrement = 10;
     var direction = scrollAmount < 0 ? -1 : 1;
     var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, velocity + direction * rotationIncrement));
     setVelocity(newVelocity);
@@ -579,24 +581,23 @@ function Switches() {
     setSwitched = _useState2[1];
   function handleSwitch() {
     setSwitched(!isSwitched);
-    console.log(isSwitched);
   }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Switches "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "centerContainer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "switcherDiv",
     style: {
-      backgroundColor: isSwitched ? "#f4f4f47f" : "#333"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "switcherCircle"
-    // style={{left: isSwitched ? "0%" : "100%"}} 
-    ,
-    style: {
-      justifySelf: isSwitched ? "right" : "left",
-      backgroundColor: isSwitched ? "#333" : "#f4f4f47f"
+      backgroundColor: isSwitched ? "#f4f4f47f" : "#333",
+      transition: '0.5s'
     },
-    onClick: handleSwitch
+    onMouseDown: handleSwitch
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "switcherCircle",
+    style: {
+      left: isSwitched ? "0px" : "100px",
+      transition: '0.5s',
+      backgroundColor: isSwitched ? "#333" : "#f4f4f47f"
+    }
   }))));
 }
 
