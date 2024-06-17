@@ -17,7 +17,7 @@ export default function Buttons() {
 
     return(
         <div>
-            <h1>Testing</h1>
+            <h1> Buttons </h1>
 
             <div className="buttonContainer">
                 <div className="buttonRow">

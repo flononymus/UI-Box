@@ -33,7 +33,7 @@ function Buttons() {
       setIsPressed(false);
     }, 50);
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Testing"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Buttons "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "buttonContainer"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "buttonRow"
@@ -125,8 +125,6 @@ function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = 
 function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-//https://www.electronjs.org/docs/latest/api/screen
-
 
 
 function Particles() {
@@ -615,9 +613,171 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 function Yoyo() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Yoyo "));
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var canvasYoyo = document.querySelector("#sceneYoyo"),
+      ctx = canvasYoyo.getContext("2d", {
+        willReadFrequently: true
+      }),
+      particles = [],
+      amount = 0,
+      mouse = {
+        x: 0,
+        y: 0
+      },
+      radius = 0.5;
+    var color = [getComputedStyle(document.documentElement).getPropertyValue('--particle-color')];
+    var ww = canvasYoyo.width = window.innerWidth;
+    var wh = canvasYoyo.height = window.innerHeight;
+
+    //   class Particle {
+    //     constructor(x, y) {
+    //       this.x = x;
+    //       this.y = y;
+    //       this.dest = {
+    //         x: x,
+    //         y: y
+    //       };
+
+    //         this.r = ww/100
+
+    //       this.vx = 0;
+    //       this.vy = 0;
+
+    //       this.accX = 0;
+    //       this.accY = 0;
+    //       this.friction = 0.7;
+
+    //       this.color = color;
+    //     }
+
+    //     render() {
+
+    //       this.accX = (this.dest.x - this.x) / 100;
+    //       this.accY = (this.dest.y - this.y) / 100;
+    //       this.vx += this.accX;
+    //       this.vy += this.accY;
+    //       this.vx *= this.friction;
+    //       this.vy *= this.friction;
+
+    //       this.x += this.vx;
+    //       this.y += this.vy;
+
+    //       ctx.fillStyle = this.color;
+    //       ctx.beginPath();
+
+    //       ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+
+    //       ctx.fill();
+
+    //       var a = this.x - mouse.x;
+    //       var b = this.y - mouse.y;
+
+    //       var distance = Math.sqrt(a * a + b * b);
+
+    //       if (distance < (radius * 60)) {
+    //         this.accX = (this.x - mouse.x);
+    //         this.accY = (this.y - mouse.y);
+
+    //         this.vx += this.accX;
+    //         this.vy += this.accY;
+    //       }
+    //       if (distance > (radius * 250)) {
+    //         this.accX = (this.dest.x - this.x) / 10;
+    //         this.accY = (this.dest.y - this.y) / 10;
+    //         this.vx += this.accX;
+    //         this.vy += this.accY;
+    //       }
+
+    //     }
+    //   }
+
+    var onMouseMove = function onMouseMove(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+    var onTouchMove = function onTouchMove(e) {
+      if (e.touches.length > 0) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+      }
+    };
+    var onTouchEnd = function onTouchEnd(e) {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    };
+    var onMouseDown = function onMouseDown() {
+      radius = 2;
+    };
+    var onMouseUp = function onMouseUp() {
+      radius = 0.5;
+    };
+    function initscene() {
+      ww = canvasYoyo.width = window.innerWidth;
+      wh = canvasYoyo.height = window.innerHeight;
+      if (ww < 500) {
+        ctx.font = "400px Arial";
+      } else {
+        ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
+        ctx.font = "400px Arial";
+      }
+      ctx.textAlign = "center";
+      var data = ctx.getImageData(0, 0, ww, wh).data;
+      ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
+      ctx.globalCompositeOperation = "screen";
+      var divider = 50;
+      particles = [];
+      for (var i = 0; i < ww; i += Math.round(ww / divider)) {
+        for (var j = 0; j < wh; j += Math.round(ww / divider)) {
+          if (data[(i + j * ww) * 4 + 3] > divider) {
+            particles.push(new Particle(i, j));
+          }
+        }
+      }
+      amount = particles.length;
+    }
+
+    //   function render() {
+    //     requestAnimationFrame(render)
+    //     ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
+    //     for (var i = 0; i < amount; i++) {
+    //       particles[i].render();
+    //     }
+    //   };
+
+    window.addEventListener("resize", initscene);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchend", onTouchEnd);
+    initscene();
+    //   requestAnimationFrame(render);
+
+    return function () {
+      window.removeEventListener("resize", initscene);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Yoyo "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
+    style: _defineProperty(_defineProperty(_defineProperty(_defineProperty({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      position: 'absolute',
+      top: 0,
+      left: 0
+    }, "width", '100vw'), "height", '100vh'), "overflow", 'hidden'), "zIndex", -10),
+    id: "sceneYoyo"
+  }));
 }
 
 /***/ }),
