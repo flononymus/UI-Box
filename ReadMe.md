@@ -5,7 +5,7 @@ A simple UI-sandbox/playground built with Electron and React
 
 ___
 
-![preview](./media/preview2.png)
+![preview](./media/preview-test.png)
 
 ___
 ### Refs and links to check out
