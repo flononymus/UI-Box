@@ -1,3 +1,5 @@
+/* ROOT */
+
 :root {
     color-scheme: light dark;
 
@@ -13,6 +15,10 @@ body {
     /* padding: 2rem; */
     padding: 1.5rem;
 }
+
+
+
+/* NAVBAR */
 
 nav {
   display: flex;
@@ -40,7 +46,7 @@ nav {
   font-size: 20px;
 }
 
-.buttonContainer {
+.buttonContainer{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,7 +86,7 @@ nav {
   margin-right: 0.25rem;
 }
 
-.logo {
+.logo{
   display:flex;
   justify-content: center;
   align-items: center;
@@ -145,17 +151,6 @@ nav {
   /* position:relative; */
 }
 
-.logoContainer::before {
-  content: '';
-  position: absolute;
-  top: 0px;
-  left: 100;
-  width:141.421%;
-  transform: rotate(45deg);
-  transform-origin: 1px 1px;
-  background-color: white;
-}
-
 .logoTextContainer { 
   position:absolute;
   justify-content: center;
@@ -179,6 +174,40 @@ nav {
   bottom: 20px;
   right: 0px;
   font-size: 100px; 
+}
+
+.centerContainer{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.switcherDiv {
+  position:relative;
+  align-items: center;
+  /* display:flex; */
+  display:grid;
+  width:200px;
+  height:100px;
+  border-radius: 100px;
+  border: 3px solid white;
+}
+
+.switcherCircle {
+  position:relative;
+  height:90px;
+  width:90px;
+  border-radius: 100px;
+  background-color: #333;
+  transition: transform 0.3s;
+  left:0;
+  margin-left:5px;
+  margin-right: 5px;
+}
+.switcherCircle:active {
+  transform: scale(150%);
 }
 
   
