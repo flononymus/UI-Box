@@ -98,15 +98,10 @@ __webpack_require__.r(__webpack_exports__);
 function Home() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " UI-Box "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "logo"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "logoContainer"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "logoTextContainer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "topLeftText"
-  }, "UI"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "bottomRightText"
-  }, "BOX"))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    className: "logoImg",
+    src: "../media/icon.png"
+  })));
 }
 
 /***/ }),
@@ -618,69 +613,97 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 function Yoyo() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var canvasYoyo = document.querySelector("#sceneYoyo"),
-      ctx = canvasYoyo.getContext("2d", {
-        willReadFrequently: true
-      }),
-      mouse = {
-        x: 0,
-        y: 0
-      },
-      radius = 0.5;
-    var color = [getComputedStyle(document.documentElement).getPropertyValue('--particle-color')];
-    var ww = canvasYoyo.width = window.innerWidth;
-    var wh = canvasYoyo.height = window.innerHeight;
-    var particleX = ww / 2;
-    var particleY = wh / 2;
-    var onMouseMove = function onMouseMove(e) {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+    var canvasYoyo = document.querySelector("#sceneYoyo");
+    var ctx = canvasYoyo.getContext("2d", {
+      willReadFrequently: true
+    });
+    var mouse = {
+      x: 0,
+      y: 0
     };
-    var onTouchMove = function onTouchMove(e) {
-      if (e.touches.length > 0) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
+    var radius = 50;
+    var isDragging = false;
+    var ww = window.innerWidth;
+    var wh = window.innerHeight;
+    var centerX = ww / 2;
+    var centerY = wh / 2;
+    var particleX = centerX;
+    var particleY = centerY;
+    var vx = 0;
+    var vy = 0;
+    var damping = 0.8;
+    var stiffness = 0.1;
+    var color = getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || 'black';
+    var onMouseMove = function onMouseMove(e) {
+      if (isDragging) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        particleX = mouse.x;
+        particleY = mouse.y;
+        console.log('Dragging:');
       }
     };
-    var onTouchEnd = function onTouchEnd(e) {
-      mouse.x = -9999;
-      mouse.y = -9999;
+    var onTouchMove = function onTouchMove(e) {
+      if (e.touches.length > 0 && isDragging) {
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+        particleX = mouse.x;
+        particleY = mouse.y;
+      }
+    };
+    var onTouchEnd = function onTouchEnd() {
+      if (isDragging) {
+        isDragging = false;
+      }
     };
     var onMouseDown = function onMouseDown(e) {
-      console.log('mouse down');
-      particleX = e.clientX;
-      particleY = e.clientY;
-      console.log(particleX, particleY);
+      var dist = Math.hypot(e.clientX - particleX, e.clientY - particleY);
+      if (dist < radius) {
+        isDragging = true;
+      }
     };
     var onMouseUp = function onMouseUp() {
-      console.log('mouse up');
+      if (isDragging) {
+        isDragging = false;
+      }
     };
-    function initscene() {
+    var initscene = function initscene() {
       ww = canvasYoyo.width = window.innerWidth;
       wh = canvasYoyo.height = window.innerHeight;
+      centerX = ww / 2;
+      centerY = wh / 2;
+      particleX = centerX;
+      particleY = centerY;
+      vx = 0;
+      vy = 0;
+      render();
+    };
+    var render = function render() {
+      if (!isDragging) {
+        var dx = centerX - particleX;
+        var dy = centerY - particleY;
+        var ax = dx * stiffness;
+        var ay = dy * stiffness;
+        vx += ax;
+        vy += ay;
+        vx *= damping;
+        vy *= damping;
+        particleX += vx;
+        particleY += vy;
+      } else {
+        vx = 0;
+        vy = 0;
+      }
       ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
-      ctx.globalCompositeOperation = "screen";
       ctx.fillStyle = color;
       ctx.beginPath();
-      ctx.arc(particleX, particleY, 50, Math.PI * 2, false);
+      ctx.arc(particleX, particleY, radius, 0, Math.PI * 2);
       ctx.fill();
-    }
-    function render() {
       requestAnimationFrame(render);
-      ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.arc(particleX, particleY, 50, Math.PI * 2, false);
-      ctx.fill();
-    }
-    ;
+    };
     window.addEventListener("resize", initscene);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove);
@@ -688,7 +711,6 @@ function Yoyo() {
     window.addEventListener("mouseup", onMouseUp);
     window.addEventListener("touchend", onTouchEnd);
     initscene();
-    requestAnimationFrame(render);
     return function () {
       window.removeEventListener("resize", initscene);
       window.removeEventListener("mousemove", onMouseMove);
@@ -698,14 +720,16 @@ function Yoyo() {
       window.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " Yoyo "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
-    style: _defineProperty(_defineProperty(_defineProperty(_defineProperty({
-      width: window.innerWidth,
-      height: window.innerHeight,
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Yoyo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
+    style: {
+      width: '100vw',
+      height: '100vh',
       position: 'absolute',
       top: 0,
-      left: 0
-    }, "width", '100vw'), "height", '100vh'), "overflow", 'hidden'), "zIndex", -10),
+      left: 0,
+      overflow: 'hidden',
+      zIndex: -10
+    },
     id: "sceneYoyo"
   }));
 }
@@ -34251,7 +34275,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Home'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Yoyo'),
     _useState2 = _slicedToArray(_useState, 2),
     page = _useState2[0],
     setPage = _useState2[1];
