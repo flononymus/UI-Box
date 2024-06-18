@@ -98,10 +98,15 @@ __webpack_require__.r(__webpack_exports__);
 function Home() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, " UI-Box "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "logo"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    className: "logoImg",
-    src: "../media/icon.png"
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "logoContainer"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "logoTextContainer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "topLeftText"
+  }, "UI"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "bottomRightText"
+  }, "BOX"))));
 }
 
 /***/ }),
@@ -624,8 +629,6 @@ function Yoyo() {
       ctx = canvasYoyo.getContext("2d", {
         willReadFrequently: true
       }),
-      particles = [],
-      amount = 0,
       mouse = {
         x: 0,
         y: 0
@@ -634,69 +637,8 @@ function Yoyo() {
     var color = [getComputedStyle(document.documentElement).getPropertyValue('--particle-color')];
     var ww = canvasYoyo.width = window.innerWidth;
     var wh = canvasYoyo.height = window.innerHeight;
-
-    //   class Particle {
-    //     constructor(x, y) {
-    //       this.x = x;
-    //       this.y = y;
-    //       this.dest = {
-    //         x: x,
-    //         y: y
-    //       };
-
-    //         this.r = ww/100
-
-    //       this.vx = 0;
-    //       this.vy = 0;
-
-    //       this.accX = 0;
-    //       this.accY = 0;
-    //       this.friction = 0.7;
-
-    //       this.color = color;
-    //     }
-
-    //     render() {
-
-    //       this.accX = (this.dest.x - this.x) / 100;
-    //       this.accY = (this.dest.y - this.y) / 100;
-    //       this.vx += this.accX;
-    //       this.vy += this.accY;
-    //       this.vx *= this.friction;
-    //       this.vy *= this.friction;
-
-    //       this.x += this.vx;
-    //       this.y += this.vy;
-
-    //       ctx.fillStyle = this.color;
-    //       ctx.beginPath();
-
-    //       ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
-
-    //       ctx.fill();
-
-    //       var a = this.x - mouse.x;
-    //       var b = this.y - mouse.y;
-
-    //       var distance = Math.sqrt(a * a + b * b);
-
-    //       if (distance < (radius * 60)) {
-    //         this.accX = (this.x - mouse.x);
-    //         this.accY = (this.y - mouse.y);
-
-    //         this.vx += this.accX;
-    //         this.vy += this.accY;
-    //       }
-    //       if (distance > (radius * 250)) {
-    //         this.accX = (this.dest.x - this.x) / 10;
-    //         this.accY = (this.dest.y - this.y) / 10;
-    //         this.vx += this.accX;
-    //         this.vy += this.accY;
-    //       }
-
-    //     }
-    //   }
-
+    var particleX = ww / 2;
+    var particleY = wh / 2;
     var onMouseMove = function onMouseMove(e) {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -711,45 +653,34 @@ function Yoyo() {
       mouse.x = -9999;
       mouse.y = -9999;
     };
-    var onMouseDown = function onMouseDown() {
-      radius = 2;
+    var onMouseDown = function onMouseDown(e) {
+      console.log('mouse down');
+      particleX = e.clientX;
+      particleY = e.clientY;
+      console.log(particleX, particleY);
     };
     var onMouseUp = function onMouseUp() {
-      radius = 0.5;
+      console.log('mouse up');
     };
     function initscene() {
       ww = canvasYoyo.width = window.innerWidth;
       wh = canvasYoyo.height = window.innerHeight;
-      if (ww < 500) {
-        ctx.font = "400px Arial";
-      } else {
-        ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
-        ctx.font = "400px Arial";
-      }
-      ctx.textAlign = "center";
-      var data = ctx.getImageData(0, 0, ww, wh).data;
       ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
       ctx.globalCompositeOperation = "screen";
-      var divider = 50;
-      particles = [];
-      for (var i = 0; i < ww; i += Math.round(ww / divider)) {
-        for (var j = 0; j < wh; j += Math.round(ww / divider)) {
-          if (data[(i + j * ww) * 4 + 3] > divider) {
-            particles.push(new Particle(i, j));
-          }
-        }
-      }
-      amount = particles.length;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(particleX, particleY, 50, Math.PI * 2, false);
+      ctx.fill();
     }
-
-    //   function render() {
-    //     requestAnimationFrame(render)
-    //     ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
-    //     for (var i = 0; i < amount; i++) {
-    //       particles[i].render();
-    //     }
-    //   };
-
+    function render() {
+      requestAnimationFrame(render);
+      ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(particleX, particleY, 50, Math.PI * 2, false);
+      ctx.fill();
+    }
+    ;
     window.addEventListener("resize", initscene);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove);
@@ -757,8 +688,7 @@ function Yoyo() {
     window.addEventListener("mouseup", onMouseUp);
     window.addEventListener("touchend", onTouchEnd);
     initscene();
-    //   requestAnimationFrame(render);
-
+    requestAnimationFrame(render);
     return function () {
       window.removeEventListener("resize", initscene);
       window.removeEventListener("mousemove", onMouseMove);

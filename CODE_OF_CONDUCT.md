@@ -7,15 +7,17 @@ ___
     - [x] Fix font not displaying
     - [x] Fix canvas size
 
-  - **Spinner**
+  - [x] **Spinner**
     - [x] Figure out if possible
     - [x] Mousewheel
     - [x] Add velocity and friction
 
-
   - [ ] **Buttons**
     - [x] Smoother animations
     - [ ] Effects onpress
+
+  - [ ] **Switches**
+    - [ ] More designs
 
   - [ ] **More examples**
     - [ ] yo-yo thing?
@@ -26,9 +28,9 @@ ___
     - [ ] Navbar better style
     - [x] Icons instead of text
 
-  - [ ] **Logo**
-    - [ ] Fix/Design better logo
-    - [ ] Banner for readme
+  - [x] **Logo**
+    - [x] Fix/Design better logo
+    - [x] Preview for ReadMe
     - [x] Center on page
 
 - **General/QOL**
