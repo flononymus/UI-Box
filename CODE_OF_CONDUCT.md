@@ -1,16 +1,23 @@
 # To-Do 
 ___
-- **Pages + Functionality**
 
-  - [x] **Particles**
-    - [x] Figure out why mouse isnt at center 
-    - [x] Fix font not displaying
-    - [x] Fix canvas size
+- **Pages + Functionality**
 
   - [x] **Spinner**
     - [x] Figure out if possible
     - [x] Mousewheel
     - [x] Add velocity and friction
+    - [x] Add lefthalf and righthalf** for scrolling
+    - [x] Fix lefthalf and righthalf dragging/set reference to actual center(?)
+
+    - [ ] Fix lefthalf and righthalf transition
+
+  - [ ] **Ball**
+    - [ ] Prototype 2d basketball thingy
+
+  - [ ] **Tether**
+    - [x] Figure out inconsistency with damping and stiffness --> initscene called twice on window resize
+    - [ ] Add actual tether
 
   - [ ] **Buttons**
     - [x] Smoother animations
@@ -20,7 +27,6 @@ ___
     - [ ] More designs
 
   - [ ] **More examples**
-    - [ ] yo-yo thing?
 
 - **Styles + Design**
 
@@ -28,12 +34,21 @@ ___
     - [ ] Navbar better style
     - [x] Icons instead of text
 
+
+___
+
+# Done
+
+  - [x] **Particles**
+    - [x] Figure out why mouse isnt at center 
+    - [x] Fix font not displaying
+    - [x] Fix canvas size
+
   - [x] **Logo**
     - [x] Fix/Design better logo
     - [x] Preview for ReadMe
     - [x] Center on page
 
-- **General/QOL**
-  - [x] Fix content centered in the middle of screen
-  - [ ] Page transitions
-  - [x] Working darkmode toggle
+  - **General/QOL**
+    - [x] Fix content centered in the middle of screen
+    - [x] Working darkmode toggle
