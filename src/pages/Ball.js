@@ -1,6 +1,5 @@
 //https://playcode.io/slingshot
 
-
 import React, { useEffect } from 'react';
 
 export default function Ball() {
