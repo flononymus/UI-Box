@@ -13,7 +13,7 @@ export default function Spinner() {
     const friction = 0.99;
 
     const [lastTime, setLastTime] = useState(0);
-    const maxSpeed = 10
+    const maxSpeed = 15
     
     let direction
 
@@ -23,7 +23,7 @@ export default function Spinner() {
     const handleWheel = (event) => {
         // const scrollAmount = event.deltaY;
         let scrollAmount = event.deltaY;
-        const rotationIncrement = 10;
+        const rotationIncrement = 20;
 
         const currentSide = event.clientX < window.innerWidth / 2 ? 'left' : 'right';
 

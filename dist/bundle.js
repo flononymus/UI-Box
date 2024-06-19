@@ -418,13 +418,13 @@ function Spinner() {
     _useState12 = _slicedToArray(_useState11, 2),
     lastTime = _useState12[0],
     setLastTime = _useState12[1];
-  var maxSpeed = 10;
+  var maxSpeed = 15;
   var direction;
   var prevSide = null;
   var handleWheel = function handleWheel(event) {
     // const scrollAmount = event.deltaY;
     var scrollAmount = event.deltaY;
-    var rotationIncrement = 10;
+    var rotationIncrement = 20;
     var currentSide = event.clientX < window.innerWidth / 2 ? 'left' : 'right';
     if (prevSide !== null && prevSide !== currentSide) {
       setVelocity(velocity * friction);
@@ -483,15 +483,10 @@ function Spinner() {
       var timeDiff = currentTime - lastTime;
       if (e.clientX < window.innerWidth / 2) {
         angleDiff = -angleDiff;
-        setRotation(initialRotation - angleDiff); // Adjusting for left side
-        console.log('inverted angle');
+        setRotation(initialRotation - angleDiff);
       } else {
         setRotation(initialRotation + angleDiff);
-        console.log('not inverted angle');
       }
-
-      // setRotation(initialRotation + angleDiff);
-
       if (timeDiff > 0) {
         var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, angleDiff / timeDiff));
         setVelocity(newVelocity);
