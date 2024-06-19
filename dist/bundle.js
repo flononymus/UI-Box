@@ -601,23 +601,24 @@ function Switches() {
 
 /***/ }),
 
-/***/ "./src/pages/Yoyo.js":
-/*!***************************!*\
-  !*** ./src/pages/Yoyo.js ***!
-  \***************************/
+/***/ "./src/pages/Tether.js":
+/*!*****************************!*\
+  !*** ./src/pages/Tether.js ***!
+  \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Yoyo)
+/* harmony export */   "default": () => (/* binding */ Tether)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-function Yoyo() {
+function Tether() {
+  var initSceneCalls = 0;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var canvasYoyo = document.querySelector("#sceneYoyo");
-    var ctx = canvasYoyo.getContext("2d", {
+    var canvasTether = document.querySelector("#sceneTether");
+    var ctx = canvasTether.getContext("2d", {
       willReadFrequently: true
     });
     var mouse = {
@@ -634,7 +635,7 @@ function Yoyo() {
     var particleY = centerY;
     var vx = 0;
     var vy = 0;
-    var damping = 0.8;
+    var damping = 0.9;
     var stiffness = 0.1;
     var color = getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || 'black';
     var onMouseMove = function onMouseMove(e) {
@@ -643,7 +644,6 @@ function Yoyo() {
         mouse.y = e.clientY;
         particleX = mouse.x;
         particleY = mouse.y;
-        console.log('Dragging:');
       }
     };
     var onTouchMove = function onTouchMove(e) {
@@ -671,8 +671,8 @@ function Yoyo() {
       }
     };
     var initscene = function initscene() {
-      ww = canvasYoyo.width = window.innerWidth;
-      wh = canvasYoyo.height = window.innerHeight;
+      ww = canvasTether.width = window.innerWidth;
+      wh = canvasTether.height = window.innerHeight;
       centerX = ww / 2;
       centerY = wh / 2;
       particleX = centerX;
@@ -680,6 +680,8 @@ function Yoyo() {
       vx = 0;
       vy = 0;
       render();
+      initSceneCalls++;
+      console.log(initSceneCalls);
     };
     var render = function render() {
       if (!isDragging) {
@@ -697,14 +699,15 @@ function Yoyo() {
         vx = 0;
         vy = 0;
       }
-      ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
+      ctx.clearRect(0, 0, canvasTether.width, canvasTether.height);
       ctx.fillStyle = color;
       ctx.beginPath();
       ctx.arc(particleX, particleY, radius, 0, Math.PI * 2);
       ctx.fill();
       requestAnimationFrame(render);
     };
-    window.addEventListener("resize", initscene);
+
+    // window.addEventListener("resize", initscene);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove);
     window.addEventListener("mousedown", onMouseDown);
@@ -712,15 +715,16 @@ function Yoyo() {
     window.addEventListener("touchend", onTouchEnd);
     initscene();
     return function () {
-      window.removeEventListener("resize", initscene);
+      // window.removeEventListener("resize", initscene);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mouseup", onMouseUp);
       window.removeEventListener("touchend", onTouchEnd);
+      cancelAnimationFrame(render);
     };
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Yoyo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Tether"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
     style: {
       width: '100vw',
       height: '100vh',
@@ -730,7 +734,7 @@ function Yoyo() {
       overflow: 'hidden',
       zIndex: -10
     },
-    id: "sceneYoyo"
+    id: "sceneTether"
   }));
 }
 
@@ -34257,7 +34261,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Buttons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Buttons */ "./src/pages/Buttons.js");
 /* harmony import */ var _pages_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Spinner */ "./src/pages/Spinner.js");
 /* harmony import */ var _pages_Particles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Particles */ "./src/pages/Particles.js");
-/* harmony import */ var _pages_Yoyo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Yoyo */ "./src/pages/Yoyo.js");
+/* harmony import */ var _pages_Tether__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Tether */ "./src/pages/Tether.js");
 /* harmony import */ var _pages_Switches__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Switches */ "./src/pages/Switches.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -34275,7 +34279,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Yoyo'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Tether'),
     _useState2 = _slicedToArray(_useState, 2),
     page = _useState2[0],
     setPage = _useState2[1];
@@ -34296,8 +34300,8 @@ var App = function App() {
     case 'Particles':
       CurrentPage = _pages_Particles__WEBPACK_IMPORTED_MODULE_6__["default"];
       break;
-    case 'Yoyo':
-      CurrentPage = _pages_Yoyo__WEBPACK_IMPORTED_MODULE_7__["default"];
+    case 'Tether':
+      CurrentPage = _pages_Tether__WEBPACK_IMPORTED_MODULE_7__["default"];
       break;
     case 'Switches':
       CurrentPage = _pages_Switches__WEBPACK_IMPORTED_MODULE_8__["default"];
@@ -34317,7 +34321,7 @@ function attachEventListeners() {
   var buttonsPageButton = document.getElementById('buttonspageButton');
   var spinnerPageButton = document.getElementById('spinnerpageButton');
   var particlesPageButton = document.getElementById('particlespageButton');
-  var yoyoPageButton = document.getElementById('yoyopageButton');
+  var tetherPageButton = document.getElementById('tetherpageButton');
   var switchesPageButton = document.getElementById('switchespageButton');
 
   // const testButton = document.getElementById('buttonTest');
@@ -34347,9 +34351,9 @@ function attachEventListeners() {
       return window.loadPage('Particles');
     });
   }
-  if (yoyoPageButton) {
-    yoyoPageButton.addEventListener(clickType, function () {
-      return window.loadPage('Yoyo');
+  if (tetherPageButton) {
+    tetherPageButton.addEventListener(clickType, function () {
+      return window.loadPage('Tether');
     });
   }
   if (switchesPageButton) {

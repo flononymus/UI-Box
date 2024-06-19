@@ -5,13 +5,13 @@ import Settings from './pages/Settings';
 import Buttons from './pages/Buttons';
 import Spinner from './pages/Spinner';
 import Particles from './pages/Particles';
-import Yoyo from './pages/Yoyo';
+import Tether from './pages/Tether';
 import Switches from './pages/Switches'
 
 
 const App = () => {
 
-    const [page, setPage] = useState('Yoyo');
+    const [page, setPage] = useState('Tether');
     let CurrentPage;
     switch (page) {
         case 'Home':
@@ -29,8 +29,8 @@ const App = () => {
         case 'Particles':
           CurrentPage = Particles;
         break;
-        case 'Yoyo':
-          CurrentPage = Yoyo;
+        case 'Tether':
+          CurrentPage = Tether;
         break;
         case 'Switches':
           CurrentPage = Switches;
@@ -56,7 +56,7 @@ function attachEventListeners() {
   const buttonsPageButton= document.getElementById('buttonspageButton');
   const spinnerPageButton= document.getElementById('spinnerpageButton');
   const particlesPageButton= document.getElementById('particlespageButton');
-  const yoyoPageButton= document.getElementById('yoyopageButton');
+  const tetherPageButton= document.getElementById('tetherpageButton');
   const switchesPageButton= document.getElementById('switchespageButton');
 
   // const testButton = document.getElementById('buttonTest');
@@ -81,8 +81,8 @@ function attachEventListeners() {
     particlesPageButton.addEventListener(clickType, () =>  window.loadPage('Particles'));
   }
 
-  if (yoyoPageButton) {
-    yoyoPageButton.addEventListener(clickType, () =>  window.loadPage('Yoyo'));
+  if (tetherPageButton) {
+    tetherPageButton.addEventListener(clickType, () =>  window.loadPage('Tether'));
   }
 
   if (switchesPageButton) {

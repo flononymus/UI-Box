@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 
-export default function Yoyo() {
+
+export default function Tether() {
+
+    var initSceneCalls = 0;
+
     useEffect(() => {
-        const canvasYoyo = document.querySelector("#sceneYoyo");
-        const ctx = canvasYoyo.getContext("2d", { willReadFrequently: true });
+        const canvasTether = document.querySelector("#sceneTether");
+        const ctx = canvasTether.getContext("2d", { willReadFrequently: true });
         const mouse = { x: 0, y: 0 };
         const radius = 50;
         let isDragging = false;
@@ -16,7 +20,7 @@ export default function Yoyo() {
         let particleY = centerY;
         let vx = 0; 
         let vy = 0; 
-        const damping = 0.8; 
+        const damping = 0.9; 
         const stiffness = 0.1; 
         const color = getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || 'black';
 
@@ -59,8 +63,8 @@ export default function Yoyo() {
         };
 
         const initscene = () => {
-            ww = canvasYoyo.width = window.innerWidth;
-            wh = canvasYoyo.height = window.innerHeight;
+            ww = canvasTether.width = window.innerWidth;
+            wh = canvasTether.height = window.innerHeight;
             centerX = ww / 2;
             centerY = wh / 2;
             particleX = centerX;
@@ -68,7 +72,10 @@ export default function Yoyo() {
             vx = 0;
             vy = 0;
             render();
+            initSceneCalls++;
+            console.log(initSceneCalls);
         };
+
 
         const render = () => {
             if (!isDragging) {
@@ -87,7 +94,7 @@ export default function Yoyo() {
                 vy = 0;
             }
 
-            ctx.clearRect(0, 0, canvasYoyo.width, canvasYoyo.height);
+            ctx.clearRect(0, 0, canvasTether.width, canvasTether.height);
             ctx.fillStyle = color;
             ctx.beginPath();
             ctx.arc(particleX, particleY, radius, 0, Math.PI * 2);
@@ -96,7 +103,8 @@ export default function Yoyo() {
             requestAnimationFrame(render);
         };
 
-        window.addEventListener("resize", initscene);
+
+        // window.addEventListener("resize", initscene);
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("touchmove", onTouchMove);
         window.addEventListener("mousedown", onMouseDown);
@@ -105,18 +113,20 @@ export default function Yoyo() {
         initscene();
 
         return () => {
-            window.removeEventListener("resize", initscene);
+            // window.removeEventListener("resize", initscene);
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("touchmove", onTouchMove);
             window.removeEventListener("mousedown", onMouseDown);
             window.removeEventListener("mouseup", onMouseUp);
             window.removeEventListener("touchend", onTouchEnd);
+            cancelAnimationFrame(render);
         };
     }, []);
 
+
     return (
         <div>
-            <h1>Yoyo</h1>
+            <h1>Tether</h1>
             <canvas
                 style={{
                     width: '100vw',
@@ -127,7 +137,7 @@ export default function Yoyo() {
                     overflow: 'hidden',
                     zIndex: -10
                 }}
-                id="sceneYoyo">
+                id="sceneTether">
             </canvas>
         </div>
     );
