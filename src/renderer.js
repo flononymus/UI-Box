@@ -12,7 +12,7 @@ import Ball from './pages/Ball';
 
 const App = () => {
 
-    const [page, setPage] = useState('Ball');
+    const [page, setPage] = useState('Home');
     let CurrentPage;
     switch (page) {
         case 'Home':
