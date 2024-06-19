@@ -16,24 +16,38 @@ export default function Spinner() {
     const maxSpeed = 10
     
     let direction
-    // const maxSpeed = 5 
+
+    let prevSide = null;
 
 
     const handleWheel = (event) => {
-        const scrollAmount = event.deltaY;
+        // const scrollAmount = event.deltaY;
+        let scrollAmount = event.deltaY;
         const rotationIncrement = 10;
-        // const direction = (event.clientX < window.innerWidth/2) ? 
-        //     scrollAmount < 0 ? -1 : 1;
-        if (event.clientX < window.innerWidth/2) {
-            direction = scrollAmount < 0 ? 1:-1
+
+        const currentSide = event.clientX < window.innerWidth / 2 ? 'left' : 'right';
+
+
+        if (prevSide !==null && prevSide !== currentSide) {
+            setVelocity(velocity * friction);
+            direction = 0
+            console.log('reset scroll amount')
         }
 
-        if (event.clientX > window.innerWidth/2) {
-            direction = scrollAmount < 0 ? -1:1
+        if (prevSide === 'left') {
+            direction = scrollAmount < 0 ? 1:-1
+            console.log('left')
         }
+        else {
+            direction = scrollAmount < 0 ? -1:1
+            console.log('right')
+        }
+
 
         const newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, velocity + direction * rotationIncrement));
         setVelocity(newVelocity)
+
+        prevSide = currentSide
     };
 
     useEffect(() => {
@@ -60,12 +74,14 @@ export default function Spinner() {
         const rect = spinnerRef.current.getBoundingClientRect();
         const spinnerX = rect.left + rect.width / 2;
         const spinnerY = rect.top + rect.height / 2;
+
         return Math.atan2(y - spinnerY, x - spinnerX) * (180 / Math.PI);
     };
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
         const angle = calculateAngle(e.clientX, e.clientY);
+
         setDragStartAngle(angle);
         setInitialRotation(rotation);
         setLastTime(Date.now());
@@ -74,12 +90,18 @@ export default function Spinner() {
     const handleMouseMove = (e) => {
         if (isDragging) {
             const currentAngle = calculateAngle(e.clientX, e.clientY);
-            const angleDiff = currentAngle - dragStartAngle;
-
+            let angleDiff = currentAngle - dragStartAngle;
             const currentTime = Date.now();
             const timeDiff = (currentTime - lastTime); 
 
-            setRotation(initialRotation + angleDiff);
+
+            if (e.clientX < window.innerWidth / 2) {
+                angleDiff = -angleDiff
+                setRotation(initialRotation - angleDiff);
+            } else {
+                setRotation(initialRotation + angleDiff);
+            }
+
             if (timeDiff > 0) {
                 const newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, angleDiff / timeDiff));
                 setVelocity(newVelocity);

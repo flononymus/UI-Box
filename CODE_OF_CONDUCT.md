@@ -7,7 +7,10 @@ ___
     - [x] Figure out if possible
     - [x] Mousewheel
     - [x] Add velocity and friction
-    - [ ] Add lefthalf and righthalf** for scrolling
+    - [x] Add lefthalf and righthalf** for scrolling
+
+    - [ ] Fix lefthalf and righthalf transition
+    - [ ] Fix lefthalf and righthalf dragging/set reference to actual center(?)
 
   - [ ] **Tether**
     - [x] Figure out inconsistency with damping and stiffness --> initscene called twice on window resize

@@ -420,23 +420,27 @@ function Spinner() {
     setLastTime = _useState12[1];
   var maxSpeed = 10;
   var direction;
-  // const maxSpeed = 5 
-
+  var prevSide = null;
   var handleWheel = function handleWheel(event) {
+    // const scrollAmount = event.deltaY;
     var scrollAmount = event.deltaY;
     var rotationIncrement = 10;
-    // const direction = (event.clientX < window.innerWidth/2) ? 
-    //     scrollAmount < 0 ? -1 : 1;
-    if (event.clientX < window.innerWidth / 2) {
-      direction = scrollAmount < 0 ? 1 : -1;
-      console.log('left half');
+    var currentSide = event.clientX < window.innerWidth / 2 ? 'left' : 'right';
+    if (prevSide !== null && prevSide !== currentSide) {
+      setVelocity(velocity * friction);
+      direction = 0;
+      console.log('reset scroll amount');
     }
-    if (event.clientX > window.innerWidth / 2) {
+    if (prevSide === 'left') {
+      direction = scrollAmount < 0 ? 1 : -1;
+      console.log('left');
+    } else {
       direction = scrollAmount < 0 ? -1 : 1;
-      console.log('right half');
+      console.log('right');
     }
     var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, velocity + direction * rotationIncrement));
     setVelocity(newVelocity);
+    prevSide = currentSide;
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var animationFrameId;
@@ -477,7 +481,17 @@ function Spinner() {
       var angleDiff = currentAngle - dragStartAngle;
       var currentTime = Date.now();
       var timeDiff = currentTime - lastTime;
-      setRotation(initialRotation + angleDiff);
+      if (e.clientX < window.innerWidth / 2) {
+        angleDiff = -angleDiff;
+        setRotation(initialRotation - angleDiff); // Adjusting for left side
+        console.log('inverted angle');
+      } else {
+        setRotation(initialRotation + angleDiff);
+        console.log('not inverted angle');
+      }
+
+      // setRotation(initialRotation + angleDiff);
+
       if (timeDiff > 0) {
         var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, angleDiff / timeDiff));
         setVelocity(newVelocity);
