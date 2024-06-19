@@ -7,11 +7,12 @@ import Spinner from './pages/Spinner';
 import Particles from './pages/Particles';
 import Tether from './pages/Tether';
 import Switches from './pages/Switches'
+import Ball from './pages/Ball';
 
 
 const App = () => {
 
-    const [page, setPage] = useState('Spinner');
+    const [page, setPage] = useState('Ball');
     let CurrentPage;
     switch (page) {
         case 'Home':
@@ -34,6 +35,9 @@ const App = () => {
         break;
         case 'Switches':
           CurrentPage = Switches;
+        break;
+        case 'Ball':
+          CurrentPage = Ball;
         break;
         default:
             CurrentPage = Home;
@@ -58,6 +62,7 @@ function attachEventListeners() {
   const particlesPageButton= document.getElementById('particlespageButton');
   const tetherPageButton= document.getElementById('tetherpageButton');
   const switchesPageButton= document.getElementById('switchespageButton');
+  const ballPageButton= document.getElementById('ballpageButton');
 
   // const testButton = document.getElementById('buttonTest');
 
@@ -87,6 +92,9 @@ function attachEventListeners() {
 
   if (switchesPageButton) {
     switchesPageButton.addEventListener(clickType, () =>  window.loadPage('Switches'));
+  }
+  if (ballPageButton) {
+    ballPageButton.addEventListener(clickType, () =>  window.loadPage('Ball'));
   }
 
 }

@@ -8,9 +8,12 @@ ___
     - [x] Mousewheel
     - [x] Add velocity and friction
     - [x] Add lefthalf and righthalf** for scrolling
+    - [x] Fix lefthalf and righthalf dragging/set reference to actual center(?)
 
     - [ ] Fix lefthalf and righthalf transition
-    - [ ] Fix lefthalf and righthalf dragging/set reference to actual center(?)
+
+  - [ ] **Ball**
+    - [ ] Prototype 2d basketball thingy
 
   - [ ] **Tether**
     - [x] Figure out inconsistency with damping and stiffness --> initscene called twice on window resize

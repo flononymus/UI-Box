@@ -2,6 +2,155 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/pages/Ball.js":
+/*!***************************!*\
+  !*** ./src/pages/Ball.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Ball)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function Ball() {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var canvasBall = document.querySelector("#sceneBall");
+    var ctx = canvasBall.getContext("2d", {
+      willReadFrequently: true
+    });
+    var mouse = {
+      x: 0,
+      y: 0
+    };
+    var radius = 25;
+    var isDragging = false;
+    var ww = window.innerWidth;
+    var wh = window.innerHeight;
+    var centerX = ww / 3;
+    var centerY = wh / 3 * 2;
+    var particleX = centerX;
+    var particleY = centerY;
+    var vx1 = 0;
+    var vy1 = 0;
+    var damping = 0.9;
+    var stiffness = 0.1;
+    var color = getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || 'black';
+    var onMouseMove = function onMouseMove(e) {
+      if (isDragging) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        particleX = mouse.x;
+        particleY = mouse.y;
+      }
+    };
+    var onTouchMove = function onTouchMove(e) {
+      if (e.touches.length > 0 && isDragging) {
+        // mouse.x = e.touches[0].clientX;
+        // mouse.y = e.touches[0].clientY;
+        particleX = mouse.x;
+        particleY = mouse.y;
+      }
+    };
+    var onTouchEnd = function onTouchEnd() {
+      if (isDragging) {
+        isDragging = false;
+      }
+    };
+    var onMouseDown = function onMouseDown(e) {
+      var dist = Math.hypot(e.clientX - particleX, e.clientY - particleY);
+      if (dist < radius) {
+        isDragging = true;
+      }
+    };
+    var onMouseUp = function onMouseUp() {
+      if (isDragging) {
+        isDragging = false;
+      }
+    };
+    var initscene = function initscene() {
+      ww = canvasBall.width = window.innerWidth;
+      wh = canvasBall.height = window.innerHeight;
+      centerX = ww / 3;
+      // centerY = wh / ballHeightDivider;
+      centerY = wh / 3 * 2;
+      particleX = centerX;
+      particleY = centerY;
+      vx1 = 0;
+      vy1 = 0;
+      render();
+    };
+    var resizeScene = function resizeScene() {
+      ww = canvasBall.width = window.innerWidth;
+      wh = canvasBall.height = window.innerHeight;
+      centerX = ww / 3;
+      // centerY = wh / ballHeightDivider;
+      centerY = wh / 3 * 2;
+      particleX = centerX;
+      particleY = centerY;
+      vx1 = 0;
+      vy1 = 0;
+    };
+    var render = function render() {
+      if (!isDragging) {
+        var dx = centerX - particleX;
+        var dy = centerY - particleY;
+        var ax = dx * stiffness;
+        var ay = dy * stiffness;
+        vx1 += ax;
+        vy1 += ay;
+        vx1 *= damping;
+        vy1 *= damping;
+        particleX += vx1;
+        particleY += vy1;
+      } else {
+        vx1 = 0;
+        vy1 = 0;
+      }
+      ctx.clearRect(0, 0, canvasBall.width, canvasBall.height);
+
+      //ball
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(particleX, particleY, radius, 0, Math.PI * 2);
+      ctx.fill();
+      requestAnimationFrame(render);
+    };
+    window.addEventListener("resize", resizeScene);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchend", onTouchEnd);
+    initscene();
+    return function () {
+      window.removeEventListener("resize", resizeScene);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchend", onTouchEnd);
+      cancelAnimationFrame(render);
+    };
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Ball"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("canvas", {
+    style: {
+      width: '100vw',
+      height: '100vh',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      overflow: 'hidden',
+      zIndex: -10
+    },
+    id: "sceneBall"
+  }));
+}
+
+/***/ }),
+
 /***/ "./src/pages/Buttons.js":
 /*!******************************!*\
   !*** ./src/pages/Buttons.js ***!
@@ -634,7 +783,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Tether() {
-  var initSceneCalls = 0;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var canvasTether = document.querySelector("#sceneTether");
     var ctx = canvasTether.getContext("2d", {
@@ -646,14 +794,21 @@ function Tether() {
     };
     var radius = 50;
     var isDragging = false;
+    var isDragging2 = false;
     var ww = window.innerWidth;
     var wh = window.innerHeight;
     var centerX = ww / 2;
     var centerY = wh / 2;
-    var particleX = centerX;
-    var particleY = centerY;
-    var vx = 0;
-    var vy = 0;
+    var centerX2 = ww / 4;
+    var centerY2 = wh / 3;
+    var particleX1 = centerX;
+    var particleY1 = centerY;
+    var vx1 = 0;
+    var vy1 = 0;
+    var particleX2 = centerX2;
+    var particleY2 = centerY2;
+    var vx2 = 0;
+    var vy2 = 0;
     var damping = 0.9;
     var stiffness = 0.1;
     var color = getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || 'black';
@@ -661,32 +816,55 @@ function Tether() {
       if (isDragging) {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
-        particleX = mouse.x;
-        particleY = mouse.y;
+        particleX1 = mouse.x;
+        particleY1 = mouse.y;
+      }
+      if (isDragging2) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        particleX2 = mouse.x;
+        particleY2 = mouse.y;
       }
     };
     var onTouchMove = function onTouchMove(e) {
       if (e.touches.length > 0 && isDragging) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-        particleX = mouse.x;
-        particleY = mouse.y;
+        // mouse.x = e.touches[0].clientX;
+        // mouse.y = e.touches[0].clientY;
+        particleX1 = mouse.x;
+        particleY1 = mouse.y;
+      }
+      if (e.touches.length > 0 && isDragging2) {
+        // mouse.x = e.touches[0].clientX;
+        // mouse.y = e.touches[0].clientY;
+
+        particleX2 = mouse.x;
+        particleY2 = mouse.y;
       }
     };
     var onTouchEnd = function onTouchEnd() {
       if (isDragging) {
         isDragging = false;
       }
+      if (isDragging2) {
+        isDragging2 = false;
+      }
     };
     var onMouseDown = function onMouseDown(e) {
-      var dist = Math.hypot(e.clientX - particleX, e.clientY - particleY);
+      var dist = Math.hypot(e.clientX - particleX1, e.clientY - particleY1);
       if (dist < radius) {
         isDragging = true;
+      }
+      var dist2 = Math.hypot(e.clientX - particleX2, e.clientY - particleY2);
+      if (dist2 < radius) {
+        isDragging2 = true;
       }
     };
     var onMouseUp = function onMouseUp() {
       if (isDragging) {
         isDragging = false;
+      }
+      if (isDragging2) {
+        isDragging2 = false;
       }
     };
     var initscene = function initscene() {
@@ -694,44 +872,118 @@ function Tether() {
       wh = canvasTether.height = window.innerHeight;
       centerX = ww / 2;
       centerY = wh / 2;
-      particleX = centerX;
-      particleY = centerY;
-      vx = 0;
-      vy = 0;
+      particleX1 = centerX;
+      particleY1 = centerY;
+      vx1 = 0;
+      vy1 = 0;
+      centerX2 = ww / 4;
+      centerY2 = wh / 3;
+      particleX2 = centerX2;
+      particleY2 = centerY2;
+      vx2 = 0;
+      vy2 = 0;
       render();
-      initSceneCalls++;
-      console.log(initSceneCalls);
     };
     var resizeScene = function resizeScene() {
       ww = canvasTether.width = window.innerWidth;
       wh = canvasTether.height = window.innerHeight;
       centerX = ww / 2;
       centerY = wh / 2;
-      particleX = centerX;
-      particleY = centerY;
-      vx = 0;
-      vy = 0;
+      particleX1 = centerX;
+      particleY1 = centerY;
+      vx1 = 0;
+      vy1 = 0;
+      centerX2 = ww / 4;
+      centerY2 = wh / 3;
+      particleX2 = centerX2;
+      particleY2 = centerY2;
+      vx2 = 0;
+      vy2 = 0;
     };
     var render = function render() {
       if (!isDragging) {
-        var dx = centerX - particleX;
-        var dy = centerY - particleY;
+        var dx = centerX - particleX1;
+        var dy = centerY - particleY1;
         var ax = dx * stiffness;
         var ay = dy * stiffness;
-        vx += ax;
-        vy += ay;
-        vx *= damping;
-        vy *= damping;
-        particleX += vx;
-        particleY += vy;
+        vx1 += ax;
+        vy1 += ay;
+        vx1 *= damping;
+        vy1 *= damping;
+        particleX1 += vx1;
+        particleY1 += vy1;
       } else {
-        vx = 0;
-        vy = 0;
+        vx1 = 0;
+        vy1 = 0;
+      }
+      if (!isDragging2) {
+        var dx2 = centerX2 - particleX2;
+        var dy2 = centerY2 - particleY2;
+        var ax2 = dx2 * stiffness;
+        var ay2 = dy2 * stiffness;
+        vx2 += ax2;
+        vy2 += ay2;
+        vx2 *= damping;
+        vy2 *= damping;
+        particleX2 += vx2;
+        particleY2 += vy2;
+      } else {
+        vx2 = 0;
+        vy2 = 0;
       }
       ctx.clearRect(0, 0, canvasTether.width, canvasTether.height);
+
+      //tether
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 10;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(particleX1, particleY1);
+      ctx.stroke();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 10;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(centerX2, centerY2);
+      ctx.lineTo(particleX2, particleY2);
+      ctx.stroke();
+
+      // const springSegments = 20;
+      // const springLength = Math.hypot(centerX - particleX1, centerY - particleY1);
+      // const segmentLength = springLength / springSegments;
+      // const angle = Math.atan2(particleY1 - centerY, particleX1 - centerX);
+
+      // ctx.strokeStyle = color;
+      // ctx.lineWidth = 2;
+      // ctx.beginPath();
+      // for (let i = 0; i <= springSegments; i++) {
+      //     const t = i / springSegments;
+      //     const offsetX = centerX + t * (particleX1 - centerX);
+      //     const offsetY = centerY + t * (particleY1 - centerY);
+      //     const wave = Math.sin(t * Math.PI * 2 * 5) * 5; 
+      //     const waveX = offsetX + Math.cos(angle + Math.PI / 2) * wave;
+      //     const waveY = offsetY + Math.sin(angle + Math.PI / 2) * wave;
+
+      //     if (i === 0) {
+      //         ctx.moveTo(waveX, waveY);
+      //     } else {
+      //         ctx.lineTo(waveX, waveY);
+      //     }
+      // }
+      // ctx.strokeStyle = color;
+      // ctx.lineWidth = 10;
+      // ctx.lineCap = "round";            
+      // ctx.stroke();
+
+      //ball
       ctx.fillStyle = color;
       ctx.beginPath();
-      ctx.arc(particleX, particleY, radius, 0, Math.PI * 2);
+      ctx.arc(particleX1, particleY1, radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(particleX2, particleY2, radius / 2, 0, Math.PI * 2);
       ctx.fill();
       requestAnimationFrame(render);
     };
@@ -34294,6 +34546,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Particles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Particles */ "./src/pages/Particles.js");
 /* harmony import */ var _pages_Tether__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Tether */ "./src/pages/Tether.js");
 /* harmony import */ var _pages_Switches__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Switches */ "./src/pages/Switches.js");
+/* harmony import */ var _pages_Ball__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/Ball */ "./src/pages/Ball.js");
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -34309,8 +34562,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Spinner'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Ball'),
     _useState2 = _slicedToArray(_useState, 2),
     page = _useState2[0],
     setPage = _useState2[1];
@@ -34337,6 +34591,9 @@ var App = function App() {
     case 'Switches':
       CurrentPage = _pages_Switches__WEBPACK_IMPORTED_MODULE_8__["default"];
       break;
+    case 'Ball':
+      CurrentPage = _pages_Ball__WEBPACK_IMPORTED_MODULE_9__["default"];
+      break;
     default:
       CurrentPage = _pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"];
   }
@@ -34354,6 +34611,7 @@ function attachEventListeners() {
   var particlesPageButton = document.getElementById('particlespageButton');
   var tetherPageButton = document.getElementById('tetherpageButton');
   var switchesPageButton = document.getElementById('switchespageButton');
+  var ballPageButton = document.getElementById('ballpageButton');
 
   // const testButton = document.getElementById('buttonTest');
 
@@ -34390,6 +34648,11 @@ function attachEventListeners() {
   if (switchesPageButton) {
     switchesPageButton.addEventListener(clickType, function () {
       return window.loadPage('Switches');
+    });
+  }
+  if (ballPageButton) {
+    ballPageButton.addEventListener(clickType, function () {
+      return window.loadPage('Ball');
     });
   }
 }
