@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 export default function Tether() {
 
-    var initSceneCalls = 0;
+    let initSceneCalls = 0;
 
     useEffect(() => {
         const canvasTether = document.querySelector("#sceneTether");
@@ -76,6 +76,17 @@ export default function Tether() {
             console.log(initSceneCalls);
         };
 
+        const resizeScene = () => {
+            ww = canvasTether.width = window.innerWidth;
+            wh = canvasTether.height = window.innerHeight;
+            centerX = ww / 2;
+            centerY = wh / 2;
+            particleX = centerX;
+            particleY = centerY;
+            vx = 0;
+            vy = 0;
+        }
+
 
         const render = () => {
             if (!isDragging) {
@@ -105,6 +116,7 @@ export default function Tether() {
 
 
         // window.addEventListener("resize", initscene);
+        window.addEventListener("resize", resizeScene);
         window.addEventListener("mousemove", onMouseMove);
         window.addEventListener("touchmove", onTouchMove);
         window.addEventListener("mousedown", onMouseDown);
@@ -114,6 +126,7 @@ export default function Tether() {
 
         return () => {
             // window.removeEventListener("resize", initscene);
+            window.removeEventListener("resize", resizeScene);
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("touchmove", onTouchMove);
             window.removeEventListener("mousedown", onMouseDown);

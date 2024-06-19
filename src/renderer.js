@@ -11,7 +11,7 @@ import Switches from './pages/Switches'
 
 const App = () => {
 
-    const [page, setPage] = useState('Tether');
+    const [page, setPage] = useState('Spinner');
     let CurrentPage;
     switch (page) {
         case 'Home':

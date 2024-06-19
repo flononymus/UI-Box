@@ -10,7 +10,8 @@ ___
     - [ ] Add lefthalf and righthalf** for scrolling
 
   - [ ] **Tether**
-    - [ ] Figure out inconsistency with damping and stiffness --> initscene called twice on window resize
+    - [x] Figure out inconsistency with damping and stiffness --> initscene called twice on window resize
+    - [ ] Add actual tether
 
   - [ ] **Buttons**
     - [x] Smoother animations

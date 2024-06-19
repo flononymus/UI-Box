@@ -4,22 +4,22 @@ import { useEffect, useRef } from "react";
 export default function Particles(){
 
     useEffect(() => {
-        var canvas = document.querySelector("#scene"),
+        let canvas = document.querySelector("#scene"),
         ctx = canvas.getContext("2d", {willReadFrequently: true}),
         particles = [],
         amount = 0,
         mouse = {x:0,y:0},
         radius = 0.5;
         
-          // var color = ["#ffffff"];
+          // let color = ["#ffffff"];
           const color = [getComputedStyle(document.documentElement).getPropertyValue('--particle-color')];
 
         
-          var displayText = "O*"
+          let displayText = "O*"
           
 
-          var ww = canvas.width = window.innerWidth;
-          var wh = canvas.height = window.innerHeight;
+          let ww = canvas.width = window.innerWidth;
+          let wh = canvas.height = window.innerHeight;
           
           class Particle {
             constructor(x, y) {
@@ -64,10 +64,10 @@ export default function Particles(){
         
               ctx.fill();
         
-              var a = this.x - mouse.x;
-              var b = this.y - mouse.y;
+              let a = this.x - mouse.x;
+              let b = this.y - mouse.y;
         
-              var distance = Math.sqrt(a * a + b * b);
+              let distance = Math.sqrt(a * a + b * b);
         
               if (distance < (radius * 60)) {
                 this.accX = (this.x - mouse.x);
@@ -128,15 +128,15 @@ export default function Particles(){
             ctx.textAlign = "center";
             ctx.fillText(displayText, ww/2, wh/1.2);
           
-            var data  = ctx.getImageData(0, 0, ww, wh).data;
+            let data  = ctx.getImageData(0, 0, ww, wh).data;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.globalCompositeOperation = "screen";
         
-            var divider = 50
+            let divider = 50
           
             particles = [];
-            for(var i=0;i<ww;i+=Math.round(ww/divider)){
-              for(var j=0;j<wh;j+=Math.round(ww/divider)){
+            for(let i=0;i<ww;i+=Math.round(ww/divider)){
+              for(let j=0;j<wh;j+=Math.round(ww/divider)){
                 if(data[((i + j*ww)*4) + 3] >divider){
                   particles.push(new Particle(i,j));
                 }
@@ -149,7 +149,7 @@ export default function Particles(){
           function render() {
             requestAnimationFrame(render)
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (var i = 0; i < amount; i++) {
+            for (let i = 0; i < amount; i++) {
               particles[i].render();
             }
           };

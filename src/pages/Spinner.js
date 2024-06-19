@@ -14,12 +14,24 @@ export default function Spinner() {
 
     const [lastTime, setLastTime] = useState(0);
     const maxSpeed = 10
+    
+    let direction
     // const maxSpeed = 5 
+
 
     const handleWheel = (event) => {
         const scrollAmount = event.deltaY;
         const rotationIncrement = 10;
-        const direction = scrollAmount < 0 ? -1 : 1;
+        // const direction = (event.clientX < window.innerWidth/2) ? 
+        //     scrollAmount < 0 ? -1 : 1;
+        if (event.clientX < window.innerWidth/2) {
+            direction = scrollAmount < 0 ? 1:-1
+        }
+
+        if (event.clientX > window.innerWidth/2) {
+            direction = scrollAmount < 0 ? -1:1
+        }
+
         const newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, velocity + direction * rotationIncrement));
         setVelocity(newVelocity)
     };

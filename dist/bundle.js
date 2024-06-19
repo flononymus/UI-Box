@@ -141,7 +141,7 @@ function Particles() {
       },
       radius = 0.5;
 
-    // var color = ["#ffffff"];
+    // let color = ["#ffffff"];
     var color = [getComputedStyle(document.documentElement).getPropertyValue('--particle-color')];
     var displayText = "O*";
     var ww = canvas.width = window.innerWidth;
@@ -419,12 +419,22 @@ function Spinner() {
     lastTime = _useState12[0],
     setLastTime = _useState12[1];
   var maxSpeed = 10;
+  var direction;
   // const maxSpeed = 5 
 
   var handleWheel = function handleWheel(event) {
     var scrollAmount = event.deltaY;
     var rotationIncrement = 10;
-    var direction = scrollAmount < 0 ? -1 : 1;
+    // const direction = (event.clientX < window.innerWidth/2) ? 
+    //     scrollAmount < 0 ? -1 : 1;
+    if (event.clientX < window.innerWidth / 2) {
+      direction = scrollAmount < 0 ? 1 : -1;
+      console.log('left half');
+    }
+    if (event.clientX > window.innerWidth / 2) {
+      direction = scrollAmount < 0 ? -1 : 1;
+      console.log('right half');
+    }
     var newVelocity = Math.min(maxSpeed, Math.max(-maxSpeed, velocity + direction * rotationIncrement));
     setVelocity(newVelocity);
   };
@@ -683,6 +693,16 @@ function Tether() {
       initSceneCalls++;
       console.log(initSceneCalls);
     };
+    var resizeScene = function resizeScene() {
+      ww = canvasTether.width = window.innerWidth;
+      wh = canvasTether.height = window.innerHeight;
+      centerX = ww / 2;
+      centerY = wh / 2;
+      particleX = centerX;
+      particleY = centerY;
+      vx = 0;
+      vy = 0;
+    };
     var render = function render() {
       if (!isDragging) {
         var dx = centerX - particleX;
@@ -708,6 +728,7 @@ function Tether() {
     };
 
     // window.addEventListener("resize", initscene);
+    window.addEventListener("resize", resizeScene);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("touchmove", onTouchMove);
     window.addEventListener("mousedown", onMouseDown);
@@ -716,6 +737,7 @@ function Tether() {
     initscene();
     return function () {
       // window.removeEventListener("resize", initscene);
+      window.removeEventListener("resize", resizeScene);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("mousedown", onMouseDown);
@@ -34279,7 +34301,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 var App = function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Tether'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Spinner'),
     _useState2 = _slicedToArray(_useState, 2),
     page = _useState2[0],
     setPage = _useState2[1];
