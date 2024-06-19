@@ -14,6 +14,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+//https://playcode.io/slingshot
+
 
 function Ball() {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -29,38 +31,50 @@ function Ball() {
     var isDragging = false;
     var ww = window.innerWidth;
     var wh = window.innerHeight;
-    var centerX = ww / 3;
+    var centerX = ww / 4;
     var centerY = wh / 3 * 2;
-    var particleX = centerX;
-    var particleY = centerY;
-    var vx1 = 0;
-    var vy1 = 0;
+    var ballX = centerX;
+    var ballY = centerY;
+    var vx = 0;
+    var vy = 0;
     var damping = 0.9;
     var stiffness = 0.1;
     var color = getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || 'black';
+    var gravity = 0.5;
+    var isReleased = false;
     var onMouseMove = function onMouseMove(e) {
       if (isDragging) {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
-        particleX = mouse.x;
-        particleY = mouse.y;
+        ballX = mouse.x;
+        ballY = mouse.y;
       }
     };
     var onTouchMove = function onTouchMove(e) {
       if (e.touches.length > 0 && isDragging) {
-        // mouse.x = e.touches[0].clientX;
-        // mouse.y = e.touches[0].clientY;
-        particleX = mouse.x;
-        particleY = mouse.y;
+        mouse.x = e.touches[0].clientX;
+        mouse.y = e.touches[0].clientY;
+        ballX = mouse.x;
+        ballY = mouse.y;
       }
     };
     var onTouchEnd = function onTouchEnd() {
+      // if (isDragging) {
+      //     isDragging = false;
+      // }
       if (isDragging) {
         isDragging = false;
+        var dx = centerX - ballX;
+        var dy = centerY - ballY;
+        vx = -dx * 0.1;
+        vy = -dy * 0.1;
+
+        // isReleased = true;
+        // console.log('Released', isReleased)
       }
     };
     var onMouseDown = function onMouseDown(e) {
-      var dist = Math.hypot(e.clientX - particleX, e.clientY - particleY);
+      var dist = Math.hypot(e.clientX - ballX, e.clientY - ballY);
       if (dist < radius) {
         isDragging = true;
       }
@@ -68,53 +82,92 @@ function Ball() {
     var onMouseUp = function onMouseUp() {
       if (isDragging) {
         isDragging = false;
+        var dx = centerX - ballX;
+        var dy = centerY - ballY;
+        vx = -dx * 0.1;
+        vy = -dy * 0.1;
+        isReleased = true;
+        console.log('Released', isReleased);
       }
     };
     var initscene = function initscene() {
       ww = canvasBall.width = window.innerWidth;
       wh = canvasBall.height = window.innerHeight;
-      centerX = ww / 3;
-      // centerY = wh / ballHeightDivider;
+      centerX = ww / 4;
       centerY = wh / 3 * 2;
-      particleX = centerX;
-      particleY = centerY;
-      vx1 = 0;
-      vy1 = 0;
+      ballX = centerX;
+      ballY = centerY;
+      vx = 0;
+      vy = 0;
       render();
     };
     var resizeScene = function resizeScene() {
       ww = canvasBall.width = window.innerWidth;
       wh = canvasBall.height = window.innerHeight;
-      centerX = ww / 3;
-      // centerY = wh / ballHeightDivider;
+      centerX = ww / 4;
       centerY = wh / 3 * 2;
-      particleX = centerX;
-      particleY = centerY;
-      vx1 = 0;
-      vy1 = 0;
+      ballX = centerX;
+      ballY = centerY;
+      vx = 0;
+      vy = 0;
     };
     var render = function render() {
       if (!isDragging) {
-        var dx = centerX - particleX;
-        var dy = centerY - particleY;
-        var ax = dx * stiffness;
-        var ay = dy * stiffness;
-        vx1 += ax;
-        vy1 += ay;
-        vx1 *= damping;
-        vy1 *= damping;
-        particleX += vx1;
-        particleY += vy1;
+        if (!isReleased || isReleased && (Math.abs(centerX - ballX) > 5 || Math.abs(centerY - ballY) > 5)) {
+          var dx = centerX - ballX;
+          var dy = centerY - ballY;
+          var ax = dx * stiffness;
+          var ay = dy * stiffness + gravity; // Apply gravity
+
+          vx += ax;
+          vy += ay;
+          vx *= damping;
+          vy *= damping;
+        } else {
+          vy += gravity;
+        }
+        ballX += vx;
+        ballY += vy;
+
+        // vy += gravity;
+        // ballX += vx;
+        // ballY += vy;
+
+        if (ballY + radius > canvasBall.height) {
+          ballY = canvasBall.height - radius;
+          vy *= -damping;
+        }
+        if (ballX + radius > canvasBall.width || ballX - radius < 0) {
+          vx *= -damping;
+          if (ballX + radius > canvasBall.width) ballX = canvasBall.width - radius;
+          if (ballX - radius < 0) ballX = radius;
+        }
       } else {
-        vx1 = 0;
-        vy1 = 0;
+        vx = 0;
+        vy = 0;
       }
+
+      //     const dx = centerX - ballX;
+      //     const dy = centerY - ballY;
+      //     const ax = dx * stiffness;
+      //     const ay = dy * stiffness;
+      //     vx += ax;
+      //     vy += ay;
+      //     vx *= damping;
+      //     vy *= damping;
+      //     ballX += vx;
+      //     ballY += vy;
+      // } else {
+      //     vx = 0;
+      //     vy = 0;
+      // }
+
       ctx.clearRect(0, 0, canvasBall.width, canvasBall.height);
 
       //ball
       ctx.fillStyle = color;
       ctx.beginPath();
-      ctx.arc(particleX, particleY, radius, 0, Math.PI * 2);
+      ctx.arc(ballX, ballY, radius, 0, Math.PI * 2);
       ctx.fill();
       requestAnimationFrame(render);
     };
@@ -148,6 +201,142 @@ function Ball() {
     id: "sceneBall"
   }));
 }
+
+// import React, { useEffect, useRef, useState } from 'react';
+
+// export default function Ball() {
+//     const canvasRef = useRef(null);
+//     const [shot, setShot] = useState(null)
+//     const [mouse, setMouse] = useState({ down: false, x: null, y: null });
+
+//     useEffect(() => {
+//         const canvasBall = canvasRef.current;
+//         const ctx = canvasBall.getContext("2d", { willReadFrequently: true });
+
+//         let ww = window.innerWidth;
+//         let wh = window.innerHeight;
+
+//         let centerX = ww / 4;
+//         let centerY = (wh / 3) * 2;
+
+//         let ballX = centerX;
+//         let ballY = centerY;
+
+//         const radius = 25;
+//         const damping = 0.9; 
+//         const gravity = 0.5; 
+//         const color = getComputedStyle(document.documentElement).getPropertyValue('--particle-color') || 'black';
+
+//         const resizeScene = () => {
+//             ww = canvasBall.width = window.innerWidth;
+//             wh = canvasBall.height = window.innerHeight;
+//             centerX = ww / 4;
+//             centerY = (wh / 3) * 2;
+//         }
+
+//         const updateShot = (shot) => {
+//             shot.x += -shot.xDirection / 30;
+//             shot.y += -shot.yDirection / 30;
+//             if (shot.x >= canvasBall.width || shot.x <= 0) shot.xDirection = -shot.xDirection;
+//             if (shot.y >= canvasBall.height || shot.y <= 0) shot.yDirection = -shot.yDirection;
+//         };
+
+//         // const drawShot = (shot) => {
+//         //     shot.x += -shot.xDirection / 30;
+//         //     shot.y += -shot.yDirection / 30;
+//         //     if (shot.x >= canvasBall.width || shot.x <= 0) shot.xDirection = -shot.xDirection;
+//         //     if (shot.y >= canvasBall.height || shot.y <= 0) shot.yDirection = -shot.yDirection;
+
+//         //     ctx.beginPath();
+//         //     ctx.arc(shot.x, shot.y, radius, 0, 2 * Math.PI);
+//         //     ctx.fill();
+//         // };
+
+//         const render = () => {
+//             ctx.clearRect(0, 0, canvasBall.width, canvasBall.height);
+
+//             ctx.strokeStyle = "#fff";
+//             ctx.fillStyle = color;
+
+//                 ctx.beginPath();
+//                 ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+//                 ctx.fill();
+
+//             if (mouse.down)  {
+//                 // ctx.beginPath();
+//                 // ctx.arc(ballX, ballY, radius, 0, Math.PI * 2);
+//                 // ctx.fill();
+
+//                 ctx.beginPath();
+//                 ctx.moveTo(centerX,centerY)
+//                 ctx.lineTo(mouse.x, mouse.y);
+//                 ctx.stroke();
+
+//                 ctx.beginPath();
+//                 ctx.arc(mouse.x, mouse.y, radius, 0, 2 * Math.PI);
+//                 ctx.fill();
+//             }
+
+//             requestAnimationFrame(render);
+//         };
+
+//         const handleMouseMove = (e) => {
+//             setMouse((prevMouse) => ({ ...prevMouse, x: e.clientX, y: e.clientY }));
+//         };
+
+//         const handleMouseDown = (e) => {
+//             setMouse({ down: true, x: e.clientX, y: e.clientY });
+//         };
+
+//         const handleMouseUp = () => {
+//             if (mouse.down) {
+//                 const newShot = {
+//                     x: mouse.x,
+//                     y: mouse.y,
+//                     xDirection: mouse.x - centerX,
+//                     yDirection: mouse.y - centerY,
+//                 };
+//             setShot(newShot); 
+//             }
+//             setMouse((prevMouse) => ({ ...prevMouse, down: false }));
+//         };
+
+//         window.addEventListener("resize", resizeScene);
+//         window.addEventListener("mousemove", handleMouseMove);
+//         window.addEventListener("mousedown", handleMouseDown);
+//         window.addEventListener("mouseup", handleMouseUp);
+
+//         resizeScene();
+//         render();
+
+//         return () => {
+//             window.removeEventListener("resize", resizeScene);
+//             window.removeEventListener("mousemove", handleMouseMove);
+//             window.removeEventListener("mousedown", handleMouseDown);
+//             window.removeEventListener("mouseup", handleMouseUp);
+//             cancelAnimationFrame(render);
+//         };
+//     }, [shot, mouse]);
+
+//     return (
+//         <div>
+//             <h1>Ball</h1>
+//             <canvas
+//                 ref={canvasRef}
+//                 style={{
+//                     width: '100vw',
+//                     height: '100vh',
+//                     position: 'absolute',
+//                     top: 0,
+//                     left: 0,
+//                     overflow: 'hidden',
+//                     zIndex: -10
+//                 }}
+//                 id="sceneBall">
+//             </canvas>
+//         </div>
+//     );
+// }
 
 /***/ }),
 
