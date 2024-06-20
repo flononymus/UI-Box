@@ -1,6 +1,8 @@
 # To-Do 
 ___
 
+- [ ] Github pages
+
 - **Pages + Functionality**
 
   - [x] **Spinner**
