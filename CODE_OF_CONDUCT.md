@@ -4,6 +4,8 @@ ___
 - [ ] Github pages
   - [ ] Github actions to automatically push to gh-pages branch
 
+  **https://www.npmjs.com/package/gh-pages**
+
   https://github.com/actions/deploy-pages
 
   https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
