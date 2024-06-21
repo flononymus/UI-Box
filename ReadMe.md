@@ -3,7 +3,7 @@ ___
 
 A simple UI-sandbox/playground built with Electron and React
 
-webhosted example coming soon
+-> github pages
 
 ___
 
